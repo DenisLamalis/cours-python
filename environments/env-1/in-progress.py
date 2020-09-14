@@ -25,8 +25,11 @@ map_max_y = 15
 # print('Map 1 : ', current_map)
 print('Map 2 : ',current_map2)
 
-for x in range(map_size):
-    for y in range(map_size): 
+for x in range(map_max_x):
+    print(current_map2[x])
+
+for x in range(map_max_x):
+    for y in range(map_max_y): 
         # print('ligne', i+1, current_map[i][0][j])
         print(f'case x={x},y={y}', current_map2[x][y])
 
