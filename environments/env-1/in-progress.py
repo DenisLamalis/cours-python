@@ -27,8 +27,12 @@ for x in range(map_max_x):
 
 # search a coordinate x,y
 
-coord_x = 14
-coord_y = 8
+# coord_x = 14
+# coord_y = 8
 
-print(f'what is the cell {coord_x},{coord_y} :', current_map[coord_x-1][coord_y-1])
+# print(f'what is the cell {coord_x},{coord_y} :', current_map[coord_x-1][coord_y-1])
 
+def find_cell_attribute(x,y):
+    return current_map[x-1][y-1]
+
+print(f'what is the cell :', find_cell_attribute(14,8))
