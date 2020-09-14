@@ -32,3 +32,5 @@ def find_cell_attribute(x,y):
 print(f'what is the cell :', find_cell_attribute(14,8))
 
 # what is the cell
+
+cell_value = ''
