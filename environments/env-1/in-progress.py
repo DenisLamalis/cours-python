@@ -13,26 +13,25 @@ map_file.close()
 map_max_x = len(current_map[0])
 map_max_y = len(current_map)
 
-# # what I have from the File
-# print('Map : ',current_map)
+# what I have from the File
+print('Map : ',current_map)
 
-# # print the maze
+# # # print the maze
+# # for x in range(map_max_x):
+# #     print(current_map[x])
+
+# # print each coord of the maze
 # for x in range(map_max_x):
-#     print(current_map[x])
+#     for y in range(map_max_y): 
+#         print(f'case x={x+1},y={y+1}', current_map[x][y])
 
-# print each coord of the maze
-for x in range(map_max_x):
-    for y in range(map_max_y): 
-        print(f'case x={x+1},y={y+1}', current_map[x][y])
+# # search a coordinate x,y
+# def find_cell_attribute(x,y):
+#     return current_map[x-1][y-1]
 
-# search a coordinate x,y
-def find_cell_attribute(x,y):
-    return current_map[x-1][y-1]
+# print(f'what is the cell :', find_cell_attribute(14,8))
 
-print(f'what is the cell :', find_cell_attribute(14,8))
-
-# cell attribute rules
-
-cell_value = ''
+# # cell attribute rules
+# cell_value = ''
 
 
