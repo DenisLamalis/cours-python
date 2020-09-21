@@ -15,7 +15,10 @@ class Map:
 
         self.load_from_file()
 
-    def is_valid_position(self, position):
+    # def is_valid_path(self, position):
+        # return position in self.paths
+        
+    def __contains__(self, position):
         return position in self.paths
 
 
@@ -38,9 +41,19 @@ class Map:
 def main():
     map = Map('map-1.txt')
 
-    p = Position(-1,0)
+    p1 = Position(-1,0)
+    # print(map.is_valid_path(p1))
+    print(p1 in map)
 
-    print(map.is_valid_position(p))
+    p2 = Position(0, 0).right()
+    # print(map.is_valid_path(p2))
+    print(p2 in map)
+
+    p3 = Position(5, 5).right()
+    # print(map.is_valid_path(p3))
+
+    print(p3 in map)
+
 
 if __name__ == "__main__":
     main()
