@@ -4,7 +4,7 @@ class Hero:
 
     def __init__(self, map):
         self.map = map
-        self.position = self.map.start
+        self.position = self.map.start_pos
     
     def move(self, direction):
         new_position = getattr(self.position, direction)()
@@ -12,10 +12,8 @@ class Hero:
             self.position = new_position
     
 def main():
-    map = Map('map-1.txt')
-
-print(position)
-
+    hero = Hero('map-1.txt')
+    print(hero.position)
 
 if __name__ == "__main__":
     main()

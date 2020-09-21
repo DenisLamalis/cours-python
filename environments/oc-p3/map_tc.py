@@ -15,9 +15,9 @@ class Map:
 
         self.load_from_file()
 
-    # # @property
-    # def start_pos(self):
-        #return list(self.start._start)[0]
+    @property
+    def start_pos(self):
+        return list(self.start)
 
     # def is_valid_path(self, position):
         # return position in self.paths
