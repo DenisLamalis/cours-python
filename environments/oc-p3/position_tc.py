@@ -11,6 +11,9 @@ class Position:
     def __hash__(self):
         return hash(self.position)
 
+    def __eq__(self, pos):
+        return self.position == pos.position
+
     def up(self):
         return Position(x-1, y)
 

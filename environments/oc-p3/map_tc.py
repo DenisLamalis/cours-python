@@ -1,5 +1,6 @@
 
-import settings as constants
+import settings_tc as constants
+from position_tc import Position
 
 class Map:
 
@@ -11,6 +12,12 @@ class Map:
         self.start = set()
         self.goal = set()
         self.items = set()
+
+        self.load_from_file()
+
+    def is_valid_position(self, position):
+        return position in self.paths
+
 
     def load_from_file(self):
 
@@ -25,7 +32,15 @@ class Map:
                     elif col == constants.GOAL_CHAR:
                         self.goal.add(Position(x, y))
                         self.paths.add(Position(x, y))
-                    elif col == constants.WALLS_CHAR:
+                    elif col == constants.WALL_CHAR:
                         self.walls.add(Position(x, y))
 
+def main():
+    map = Map('map-1.txt')
 
+    p = Position(-1,0)
+
+    print(map.is_valid_position(p))
+
+if __name__ == "__main__":
+    main()
