@@ -15,9 +15,13 @@ class Map:
 
         self.load_from_file()
 
+    # # @property
+    # def start_pos(self):
+        #return list(self.start._start)[0]
+
     # def is_valid_path(self, position):
         # return position in self.paths
-        
+
     def __contains__(self, position):
         return position in self.paths
 
@@ -51,8 +55,9 @@ def main():
 
     p3 = Position(5, 5).right()
     # print(map.is_valid_path(p3))
-
     print(p3 in map)
+
+    print(map.start)
 
 
 if __name__ == "__main__":
