@@ -1,3 +1,4 @@
+from map_tc import Map
 
 class Hero:
 
@@ -9,3 +10,12 @@ class Hero:
         new_position = getattr(self.position, direction)()
         if new_position in self.map:
             self.position = new_position
+    
+def main():
+    map = Map('map-1.txt')
+
+print(position)
+
+
+if __name__ == "__main__":
+    main()
