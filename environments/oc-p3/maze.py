@@ -1,5 +1,6 @@
 import settings as constants
 from position import Position
+from items import Items
 
 class Maze:
 
@@ -14,10 +15,6 @@ class Maze:
 
         self.organize_the_maze()
         self.put_items()
-
-    def is_valid_cell(self, position):
-        """ Return if the cell is valid or not. """     
-        return position in self.paths
 
     def organize_the_maze(self):
         """ Organize the cells of the maze. """
@@ -37,20 +34,22 @@ class Maze:
 
     def put_items(self):
         """ put the items in the maze. """
-        for item in constants.ITEMS:
+        items_object = Items()
+        for item in items_object.items:
             self.items.add(item)
 
-    def is_special_cell(self, position):
+    def is_valid_cell(self, position):
+        """ Return if the cell is valid or not. """     
+        return position in self.paths
+
+    def is_special_cell(self, cell_pos):
         """ Determine if the cell is special """
-        # est-ce que la case est dans start, goal ou items
-        print(f'position envoyee {position}')
-        print(self.start)
-        if {(0,3)} == self.start:
+        if cell_pos in self.start:
             print('it is the start')
-        # elif position in self.goal:
-        #     print('it is the goal')
-        # elif position in self.items:
-        #     print('there are a item')
+        elif cell_pos in self.goal:
+            print('it is the goal')
+        elif cell_pos in self.items:
+            print('there are a item')
         else:
             print('nothing special')
 
@@ -62,8 +61,10 @@ class Maze:
 def main():
     maze = Maze(constants.FILENAME)
 
-    # print('\n')    
+    # print('\n')
+    # #####    
     # # test de l'état de cellules
+    # #####
     # p1 = Position(-1,0)
     # p2 = Position(0, 0).right()
     # p3 = Position(5, 5).right()
@@ -73,7 +74,9 @@ def main():
     # print(f'Is the cell in position {p3} valide ? {maze.is_valid_cell(p3)}')
 
     # print('\n')
-    # # I validate that there are all the celles and all the coordinates  
+    # #####
+    # # I validate that there are all the cells and all the coordinates
+    # #####  
     # print(f'Total of cells : {len(maze.paths) + len(maze.walls)}\n')
     
     # print(f'Positions of the {len(maze.paths)} paths  : {maze.paths}\n')
@@ -84,29 +87,17 @@ def main():
     # print(f'The items are in this positions : {maze.items}\n')
 
     print('\n')
+    #####
     # testing if the cell is special or not
-    maze.is_special_cell({(0,3)})
+    #####
+    cell_pos1 = Position(0, 3)
+    cell_pos2 = Position(4, 9)
+    cell_pos3 = Position(8, 8)
+
+    maze.is_special_cell(cell_pos1)
+    maze.is_special_cell(cell_pos2)    
+    maze.is_special_cell(cell_pos3)
 
 if __name__ == "__main__":
     main()
 
-
-
-###########################
-
-#    def open_file(self):
-#         current_map = []
-        
-#         map_file = open(self.filename,'r')
-#         for line in map_file:
-#             current_map.append(line.strip())
-#         map_file.close()
-
-#         print('Map : ',current_map)
-
-# ma_map = Maze('map-1.txt')
-
-# print(ma_map.open_file())
-
-    # def find_cell_attribute(self, x, y):
-    #     return current_map[x-1][y-1]
