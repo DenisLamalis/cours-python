@@ -4,8 +4,7 @@ from position import Position
 class Maze:
 
     def __init__(self, filename):
-        """ initialize the maze """
-
+        """ initialize the maze. """
         self.filename = filename
         self.paths = set()
         self.walls = set()
@@ -14,15 +13,14 @@ class Maze:
         self.items = set()
 
         self.organize_the_maze()
+        self.put_items()
 
     def is_valid_cell(self, position):
-        """ is it a valid cell ? """
-        
+        """ Return if the cell is valid or not. """     
         return position in self.paths
 
     def organize_the_maze(self):
-        """ Organize the cells of the maze """
-
+        """ Organize the cells of the maze. """
         with open(self.filename) as infile:
             for x, line in enumerate(infile):
                 for y, col in enumerate(line):
@@ -38,10 +36,9 @@ class Maze:
                         self.walls.add(Position(x, y))
 
     def put_items(self):
-        """ put the items in the maze """
-
-        for item in items:
-            self.items.add(Position(x, y))
+        """ put the items in the maze. """
+        for item in constants.ITEMS:
+            self.items.add(item)
 
 #######################
 # Tests & validations #
@@ -50,23 +47,25 @@ class Maze:
 def main():
     maze = Maze(constants.FILENAME)
 
+    # test de l'état de cellules
     p1 = Position(-1,0)
     print(maze.is_valid_cell(p1))
-    # print(p1 in map)
 
     p2 = Position(0, 0).right()
     print(maze.is_valid_cell(p2))
-    # print(p2 in map)
 
     p3 = Position(5, 5).right()
     print(maze.is_valid_cell(p3))
-    # print(p3 in map)
 
-""" je verifie que j'ai toutes les cases ainsi que leurs coordonnées """
+    # je verifie que j'ai toutes les cases ainsi que leurs coordonnées  
     print(f'Total des cases : {len(maze.paths) + len(maze.walls)}')
+    
     print(f'la liste des positions des {len(maze.paths)} chemins  : {maze.paths}')
     print(f'la liste des positions des {len(maze.walls)} murs : {maze.walls}')
-    print(maze.start)
+
+    print(f'The start is in this positions : {maze.start}')
+    print(f'The goal is in this positions : {maze.goal}') 
+    print(f'The items are in this positions : {maze.items}')
 
 
 

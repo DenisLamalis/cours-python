@@ -5,4 +5,4 @@ WALL_CHAR = '#'
 
 FILENAME = 'map-1.txt'
 
-ITEMS = {(13, 4)}
+ITEMS = {(13, 4), (12, 12), (8, 8)}
