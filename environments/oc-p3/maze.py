@@ -39,11 +39,11 @@ class Maze:
             self.items.add(item)
 
     def is_valid_cell(self, position):
-        """ Return if the cell is valid or not. """     
+        """ Return if a cell is valid or not. """     
         return position in self.paths
 
     def is_special_cell(self, cell_pos):
-        """ Determine if the cell is special """
+        """ Determine if a cell is special (will be modify without the print) """
         if cell_pos in self.start:
             print('it is the start')
         elif cell_pos in self.goal:
@@ -63,7 +63,7 @@ def main():
 
     # print('\n')
     # #####    
-    # # test de l'état de cellules
+    # # Testing the organize of the cells
     # #####
     # p1 = Position(-1,0)
     # p2 = Position(0, 0).right()
@@ -75,7 +75,7 @@ def main():
 
     # print('\n')
     # #####
-    # # I validate that there are all the cells and all the coordinates
+    # # Testing that there are all the cells and all the coordinates
     # #####  
     # print(f'Total of cells : {len(maze.paths) + len(maze.walls)}\n')
     
@@ -93,10 +93,13 @@ def main():
     cell_pos1 = Position(0, 3)
     cell_pos2 = Position(4, 9)
     cell_pos3 = Position(8, 8)
+    cell_pos4 = Position(0,0)
 
     maze.is_special_cell(cell_pos1)
     maze.is_special_cell(cell_pos2)    
     maze.is_special_cell(cell_pos3)
+    maze.is_special_cell(cell_pos4)
+
 
 if __name__ == "__main__":
     main()

@@ -8,6 +8,7 @@ class Items:
         self.choose_position()
 
     def choose_position(self):
+        """ I choose 3 positions for items. (will be modify with random position) """
         self.items.add(Position(13, 4))
         self.items.add(Position(12, 12))
         self.items.add(Position(8, 8))
