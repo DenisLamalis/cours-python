@@ -13,6 +13,13 @@ class Maze:
         self.goal = set()
         self.items = set()
 
+        self.organize_the_maze()
+
+    def is_valid_cell(self, position):
+        """ is it a valid cell ? """
+        
+        return position in self.paths
+
     def organize_the_maze(self):
         """ Organize the cells of the maze """
 
@@ -30,26 +37,37 @@ class Maze:
                     elif col == constants.WALL_CHAR:
                         self.walls.add(Position(x, y))
 
+    def put_items(self):
+        """ put the items in the maze """
 
-# Tests #
-#########
+        for item in items:
+            self.items.add(Position(x, y))
+
+#######################
+# Tests & validations #
+#######################
 
 def main():
-    map = Maze('map-1.txt')
+    maze = Maze(constants.FILENAME)
 
     p1 = Position(-1,0)
-    # print(map.is_valid_path(p1))
-    print(p1 in map)
+    print(maze.is_valid_cell(p1))
+    # print(p1 in map)
 
     p2 = Position(0, 0).right()
-    # print(map.is_valid_path(p2))
-    print(p2 in map)
+    print(maze.is_valid_cell(p2))
+    # print(p2 in map)
 
     p3 = Position(5, 5).right()
-    # print(map.is_valid_path(p3))
-    print(p3 in map)
+    print(maze.is_valid_cell(p3))
+    # print(p3 in map)
 
-    print(map.start)
+""" je verifie que j'ai toutes les cases ainsi que leurs coordonnées """
+    print(f'Total des cases : {len(maze.paths) + len(maze.walls)}')
+    print(f'la liste des positions des {len(maze.paths)} chemins  : {maze.paths}')
+    print(f'la liste des positions des {len(maze.walls)} murs : {maze.walls}')
+    print(maze.start)
+
 
 
 if __name__ == "__main__":
