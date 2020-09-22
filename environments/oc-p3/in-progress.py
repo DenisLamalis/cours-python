@@ -16,9 +16,9 @@ map_max_y = len(current_map)
 # what I have from the File
 print('Map : ',current_map)
 
-# # # print the maze
-# # for x in range(map_max_x):
-# #     print(current_map[x])
+# print the maze
+for x in range(map_max_x):
+    print(current_map[x])
 
 # # print each coord of the maze
 # for x in range(map_max_x):
