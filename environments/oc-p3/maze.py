@@ -36,15 +36,19 @@ class Maze:
 
     def put_items(self):
         """ put the items in the maze. """
-        from items import Items
-        items_object = Items()
-        for item in items_object.items:
+        free_paths = self.paths.difference(self.start)
+        free_paths = free_paths.difference(self.goal)
+        items_cells = (random.sample(free_paths, 3))
+        items_object = set(items_cells)
+        for item in items_object:
             self.items.add(item)
 
-
-
-
-
+    # def put_items(self):
+    #     """ put the items in the maze. """
+    #     from items import Items
+    #     items_object = Items()
+    #     for item in items_object.items:
+    #         self.items.add(item)
 
     def is_valid_cell(self, position):
         """ Return if a cell is valid or not. """     
@@ -61,16 +65,14 @@ class Maze:
         else:
             print('nothing special')
 
-    def free_cells(self):
-        free_paths = self.paths.difference(self.start)
-        free_paths = free_paths.difference(self.goal)
-        items_cells = (random.sample(free_paths, 3))
-        return items_cells       
-        # return free_paths
-    
-    # def rand_items(self, free_paths):
+     
+    # def free_cells(self):
+    #     free_paths = self.paths.difference(self.start)
+    #     free_paths = free_paths.difference(self.goal)
     #     items_cells = (random.sample(free_paths, 3))
-    #     return items_cells
+    #     items_cells = set(items_cells)
+    #     # print(items_cells[0])
+    #     return items_cells     
 
 
 #######################
@@ -123,7 +125,7 @@ def main():
     #####
     # testing the random item location generation
     #####
-    print(f'Positions of the {len(maze.free_cells())} free paths  : {maze.free_cells()}\n')
+    # print(f'Positions of the {len(maze.free_cells())} free paths  : {maze.free_cells()}\n')
     # print(len(maze.free_cells()))
     # print(maze.free_cells())
 
