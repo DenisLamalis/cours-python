@@ -1,8 +1,7 @@
-import settings as constants
-from position import Position
-
 import random
 
+import settings as constants
+from position import Position
 
 class Maze:
 
@@ -38,8 +37,6 @@ class Maze:
         """ put the items in the maze. """
         free_paths = self.paths.difference(self.start)
         free_paths = free_paths.difference(self.goal)
-        # items_cells = (random.sample(free_paths, 3))
-        # items_object = set(items_cells)
         items_object = set(random.sample(free_paths, 3))
         for item in items_object:
             self.items.add(item)
@@ -79,32 +76,31 @@ def main():
     # print(f'Is the cell in position {p2} valide ? {maze.is_valid_cell(p2)}')
     # print(f'Is the cell in position {p3} valide ? {maze.is_valid_cell(p3)}')
 
-    # print('\n')
-    # #####
-    # # Testing that there are all the cells and all the coordinates
-    # #####  
-    # print(f'Total of cells : {len(maze.paths) + len(maze.walls)}\n')
-    
+    print('\n')
+    #####
+    # Testing that there are all the cells and all the coordinates
+    #####  
+    # print(f'Total of cells : {len(maze.paths) + len(maze.walls)}\n') 
     # print(f'Positions of the {len(maze.paths)} paths  : {maze.paths}\n')
     # print(f'Positions of the {len(maze.walls)} walls : {maze.walls}\n')
 
-    # print(f'The start is in this positions : {maze.start}\n')
-    # print(f'The goal is in this positions : {maze.goal}\n') 
-    # print(f'The items are in this positions : {maze.items}\n')
+    print(f'The start is in this positions : {maze.start}\n')
+    print(f'The goal is in this positions : {maze.goal}\n') 
+    print(f'The items are in this positions : {maze.items}\n')
 
-    # print('\n')
-    # #####
-    # # testing if the cell is special or not
-    # #####
-    # cell_pos1 = Position(0, 3)
-    # cell_pos2 = Position(4, 9)
-    # cell_pos3 = Position(11, 7)
-    # cell_pos4 = Position(2, 9)
+    print('\n')
+    #####
+    # testing if the cell is special or not
+    #####
+    cell_pos1 = Position(0, 3)
+    cell_pos2 = Position(4, 9)
+    cell_pos3 = Position(11, 7)
+    cell_pos4 = Position(2, 9)
 
-    # maze.is_special_cell(cell_pos1)
-    # maze.is_special_cell(cell_pos2)    
-    # maze.is_special_cell(cell_pos3)
-    # maze.is_special_cell(cell_pos4)
+    maze.is_special_cell(cell_pos1)
+    maze.is_special_cell(cell_pos2)    
+    maze.is_special_cell(cell_pos3)
+    maze.is_special_cell(cell_pos4)
 
     # print('\n')
     # #####
