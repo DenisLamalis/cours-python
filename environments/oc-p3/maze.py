@@ -1,6 +1,6 @@
 import settings as constants
 from position import Position
-from items import Items
+
 
 class Maze:
 
@@ -34,6 +34,7 @@ class Maze:
 
     def put_items(self):
         """ put the items in the maze. """
+        from items import Items
         items_object = Items()
         for item in items_object.items:
             self.items.add(item)
@@ -52,6 +53,8 @@ class Maze:
             print('there are a item')
         else:
             print('nothing special')
+
+
 
 
 #######################
@@ -86,19 +89,28 @@ def main():
     # print(f'The goal is in this positions : {maze.goal}\n') 
     # print(f'The items are in this positions : {maze.items}\n')
 
+    # print('\n')
+    # #####
+    # # testing if the cell is special or not
+    # #####
+    # cell_pos1 = Position(0, 3)
+    # cell_pos2 = Position(4, 9)
+    # cell_pos3 = Position(8, 8)
+    # cell_pos4 = Position(0,0)
+
+    # maze.is_special_cell(cell_pos1)
+    # maze.is_special_cell(cell_pos2)    
+    # maze.is_special_cell(cell_pos3)
+    # maze.is_special_cell(cell_pos4)
+
     print('\n')
     #####
-    # testing if the cell is special or not
+    # testing the random item location generation
     #####
-    cell_pos1 = Position(0, 3)
-    cell_pos2 = Position(4, 9)
-    cell_pos3 = Position(8, 8)
-    cell_pos4 = Position(0,0)
+    print(f'Positions of the {len(maze.free_cells())} free paths  : {maze.free_cells()}\n')
+    # print(len(maze.free_cells()))
+    # print(maze.free_cells())
 
-    maze.is_special_cell(cell_pos1)
-    maze.is_special_cell(cell_pos2)    
-    maze.is_special_cell(cell_pos3)
-    maze.is_special_cell(cell_pos4)
 
 
 if __name__ == "__main__":
