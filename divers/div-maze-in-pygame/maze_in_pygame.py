@@ -1,3 +1,6 @@
+# source
+# https://pythonspot.com/maze-in-pygame/
+
 from pygame.locals import *
 import pygame
  
@@ -46,8 +49,8 @@ class Maze:
 
 class App:
  
-    windowWidth = 660
-    windowHeight = 660
+    windowWidth = 800
+    windowHeight = 600
     player = 0
  
     def __init__(self):
@@ -64,8 +67,8 @@ class App:
         
         pygame.display.set_caption('Pygame pythonspot.com example')
         self._running = True
-        self._image_surf = pygame.image.load("floor.bmp").convert()
-        self._block_surf = pygame.image.load("floor.bmp").convert()
+        self._image_surf = pygame.image.load("player.png").convert()
+        self._block_surf = pygame.image.load("block.png").convert()
  
     def on_event(self, event):
         if event.type == QUIT:
