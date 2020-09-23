@@ -38,17 +38,11 @@ class Maze:
         """ put the items in the maze. """
         free_paths = self.paths.difference(self.start)
         free_paths = free_paths.difference(self.goal)
-        items_cells = (random.sample(free_paths, 3))
-        items_object = set(items_cells)
+        # items_cells = (random.sample(free_paths, 3))
+        # items_object = set(items_cells)
+        items_object = set(random.sample(free_paths, 3))
         for item in items_object:
             self.items.add(item)
-
-    # def put_items(self):
-    #     """ put the items in the maze. """
-    #     from items import Items
-    #     items_object = Items()
-    #     for item in items_object.items:
-    #         self.items.add(item)
 
     def is_valid_cell(self, position):
         """ Return if a cell is valid or not. """     
@@ -63,16 +57,7 @@ class Maze:
         elif cell_pos in self.items:
             print('there are a item')
         else:
-            print('nothing special')
-
-     
-    # def free_cells(self):
-    #     free_paths = self.paths.difference(self.start)
-    #     free_paths = free_paths.difference(self.goal)
-    #     items_cells = (random.sample(free_paths, 3))
-    #     items_cells = set(items_cells)
-    #     # print(items_cells[0])
-    #     return items_cells     
+            print('nothing special')   
 
 
 #######################
@@ -113,21 +98,21 @@ def main():
     # #####
     # cell_pos1 = Position(0, 3)
     # cell_pos2 = Position(4, 9)
-    # cell_pos3 = Position(8, 8)
-    # cell_pos4 = Position(0,0)
+    # cell_pos3 = Position(11, 7)
+    # cell_pos4 = Position(2, 9)
 
     # maze.is_special_cell(cell_pos1)
     # maze.is_special_cell(cell_pos2)    
     # maze.is_special_cell(cell_pos3)
     # maze.is_special_cell(cell_pos4)
 
-    print('\n')
-    #####
-    # testing the random item location generation
-    #####
-    # print(f'Positions of the {len(maze.free_cells())} free paths  : {maze.free_cells()}\n')
-    # print(len(maze.free_cells()))
-    # print(maze.free_cells())
+    # print('\n')
+    # #####
+    # # testing the random item location generation
+    # #####
+    # # print(f'Positions of the {len(maze.free_cells())} free paths  : {maze.free_cells()}\n')
+    # # print(len(maze.free_cells()))
+    # # print(maze.free_cells())
 
 
 
