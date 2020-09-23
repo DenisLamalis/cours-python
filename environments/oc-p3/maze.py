@@ -81,11 +81,11 @@ def main():
     # Testing that there are all the cells and all the coordinates
     #####  
     # print(f'Total of cells : {len(maze.paths) + len(maze.walls)}\n') 
-    print(f'Positions of the {len(maze.paths)} paths  : {maze.paths}\n')
-    print(f'Positions of the {len(maze.walls)} walls : {maze.walls}\n')
+    # print(f'Positions of the {len(maze.paths)} paths  : {maze.paths}\n')
+    # print(f'Positions of the {len(maze.walls)} walls : {maze.walls}\n')
 
-    # print(f'The start is in this positions : {maze.start}\n')cd
-    # print(f'The goal is in this positions : {maze.goal}\n') 
+    print(f'The start is in this positions : {maze.start}\n')
+    print(f'The goal is in this positions : {maze.goal}\n') 
     # print(f'The items are in this positions : {maze.items}\n')
 
     # print('\n')

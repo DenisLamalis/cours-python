@@ -6,13 +6,19 @@ import settings as constants
 
 class MazeScreen:
     """ """
-    def __init__(self, walls):
+    def __init__(self, paths, walls, start, goal, items):
         pygame.init()
         self.window = pygame.display.set_mode((660, 660))
+        self.paths = paths
         self.walls = walls
+        self.start = start
+        self.goal = goal
+        self.items = items
 
         self.screen_paths()
         self.screen_walls()
+        self.screen_start()
+        self.screen_goal()
 
     def draw_maze(self):
         """ """
@@ -20,11 +26,6 @@ class MazeScreen:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
-
-    # def image(self):
-    #     self.image = pygame.image.load('floor.bmp').convert()
-    #     self.window.blit(self.image, (40, 40))
-    #     pygame.display.flip()
 
     def screen_paths(self):
         """ """
@@ -48,7 +49,6 @@ class MazeScreen:
 0), (8, 12), (0, 8), (4, 14), (8, 5), (10, 2), (9, 4), (0, 1), (10, 11), (11, 10), (6, 7), (7, 6), (8, 7), (2, 0), (0, 
 12), (6, 0), (6, 9)}
         self.a_walls = list(self.a_walls)
-        print(self.a_walls)
         self.image = pygame.image.load('images/wall.bmp').convert()
         i = 0
         for wall in self.a_walls:
@@ -60,10 +60,31 @@ class MazeScreen:
 
         pygame.display.flip()
 
+    def screen_start(self):
+        a_start = list({(0, 3)})
+        self.image = pygame.image.load('images/MacGyver.png').convert()
+        pos_x = a_start[0][1] * 44
+        pos_y = a_start[0][0] * 44
+        self.window.blit(self.image, (pos_x, pos_y))
+
+        pygame.display.flip()
+
+    def screen_goal(self):
+        a_goal = list({(4, 9)})
+        self.image = pygame.image.load('images/Gardien.png').convert()
+        pos_x = a_goal[0][1] * 44
+        pos_y = a_goal[0][0] * 44
+        self.window.blit(self.image, (pos_x, pos_y))
+
+        pygame.display.flip()
+
+    def screen_items(self):
+        pass
+
 
 if __name__ == '__main__':
     
     m = Maze(constants.FILENAME)   
-    ms = MazeScreen(m.walls)
+    ms = MazeScreen(m.paths, m.walls, m.start, m.goal, m.items)
     ms.draw_maze()
 
