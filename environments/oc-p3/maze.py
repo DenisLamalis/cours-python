@@ -62,7 +62,7 @@ class Maze:
 #######################
 
 def main():
-    # maze = Maze(constants.FILENAME)
+    maze = Maze(constants.FILENAME)
 
     # print('\n')
     # #####    
