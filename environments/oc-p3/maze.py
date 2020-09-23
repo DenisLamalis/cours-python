@@ -1,6 +1,8 @@
 import settings as constants
 from position import Position
 
+import random
+
 
 class Maze:
 
@@ -39,6 +41,11 @@ class Maze:
         for item in items_object.items:
             self.items.add(item)
 
+
+
+
+
+
     def is_valid_cell(self, position):
         """ Return if a cell is valid or not. """     
         return position in self.paths
@@ -54,7 +61,16 @@ class Maze:
         else:
             print('nothing special')
 
-
+    def free_cells(self):
+        free_paths = self.paths.difference(self.start)
+        free_paths = free_paths.difference(self.goal)
+        items_cells = (random.sample(free_paths, 3))
+        return items_cells       
+        # return free_paths
+    
+    # def rand_items(self, free_paths):
+    #     items_cells = (random.sample(free_paths, 3))
+    #     return items_cells
 
 
 #######################
