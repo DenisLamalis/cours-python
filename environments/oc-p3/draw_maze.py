@@ -11,7 +11,7 @@ class MazeScreen:
         self.window = pygame.display.set_mode((660, 660))
         self.walls = walls
 
-        # self.screen_paths()
+        self.screen_paths()
         self.screen_walls()
 
     def draw_maze(self):
@@ -34,8 +34,8 @@ class MazeScreen:
         i = 0
         for path in a_paths:
             pos = list(a_paths[i])
-            pos_x = pos[0] * 44
-            pos_y = pos[1] * 44
+            pos_x = pos[1] * 44
+            pos_y = pos[0] * 44
             self.window.blit(self.image, (pos_x, pos_y))
             i = i + 1
 
@@ -43,17 +43,20 @@ class MazeScreen:
 
     def screen_walls(self):
         """ """
-        self.a_walls = self.walls
-        print(self.a_walls)
+        self.a_walls = {(12, 4), (5, 1), (10, 6), (9, 8), (0, 14), (11, 14), (3, 6), (9, 10), (1, 8), (6, 4), (6, 13), (5, 5), (8, 4), (0, 0), (9, 12), (11, 9), (13, 3), (1, 10), (13, 12), (3, 1), (14, 1), (0, 2), (11, 2), (1, 3), (1, 12), (13, 14), (12, 6), (3, 3), (5, 0), (5, 9), (4, 11), (11, 4), (10, 8), (1, 5), (13, 7), (2, 13), (7, 9), (12, 8), (14, 5), (5, 2), (5, 11), (8, 13), (2, 6), (7, 2), (12, 1), (12, 10), (3, 7), (4, 6), (10, 3), (0, 11), (14, 0), (3, 9), (14, 9), (4, 8), (1, 2), 
+(0, 13), (11, 13), (6, 10), (3, 11), (14, 11), (8, 1), (8, 10), (10, 7), (0, 6), (2, 3), (3, 4), (4, 12), (8, 3), (10, 
+0), (8, 12), (0, 8), (4, 14), (8, 5), (10, 2), (9, 4), (0, 1), (10, 11), (11, 10), (6, 7), (7, 6), (8, 7), (2, 0), (0, 
+12), (6, 0), (6, 9)}
         self.a_walls = list(self.a_walls)
+        print(self.a_walls)
         self.image = pygame.image.load('images/wall.bmp').convert()
-        # i = 0
-        # for wall in self.a_walls:
-        #     pos = list(self.a_walls[i])
-        #     pos_x = pos[0] * 44
-        #     pos_y = pos[1] * 44
-        #     self.window.blit(self.image, (pos_x, pos_y))
-        #     i = i + 1
+        i = 0
+        for wall in self.a_walls:
+            pos = list(self.a_walls[i])
+            pos_x = pos[1] * 44
+            pos_y = pos[0] * 44
+            self.window.blit(self.image, (pos_x, pos_y))
+            i = i + 1
 
         pygame.display.flip()
 
