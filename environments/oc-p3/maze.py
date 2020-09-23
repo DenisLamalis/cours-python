@@ -62,7 +62,7 @@ class Maze:
 #######################
 
 def main():
-    maze = Maze(constants.FILENAME)
+    # maze = Maze(constants.FILENAME)
 
     # print('\n')
     # #####    
@@ -76,7 +76,7 @@ def main():
     # print(f'Is the cell in position {p2} valide ? {maze.is_valid_cell(p2)}')
     # print(f'Is the cell in position {p3} valide ? {maze.is_valid_cell(p3)}')
 
-    print('\n')
+    # print('\n')
     #####
     # Testing that there are all the cells and all the coordinates
     #####  
@@ -84,23 +84,23 @@ def main():
     # print(f'Positions of the {len(maze.paths)} paths  : {maze.paths}\n')
     # print(f'Positions of the {len(maze.walls)} walls : {maze.walls}\n')
 
-    print(f'The start is in this positions : {maze.start}\n')
-    print(f'The goal is in this positions : {maze.goal}\n') 
-    print(f'The items are in this positions : {maze.items}\n')
+    # print(f'The start is in this positions : {maze.start}\n')
+    # print(f'The goal is in this positions : {maze.goal}\n') 
+    # print(f'The items are in this positions : {maze.items}\n')
 
-    print('\n')
+    # print('\n')
     #####
     # testing if the cell is special or not
     #####
-    cell_pos1 = Position(0, 3)
-    cell_pos2 = Position(4, 9)
-    cell_pos3 = Position(11, 7)
-    cell_pos4 = Position(2, 9)
+    # cell_pos1 = Position(0, 3)
+    # cell_pos2 = Position(4, 9)
+    # cell_pos3 = Position(11, 7)
+    # cell_pos4 = Position(2, 9)
 
-    maze.is_special_cell(cell_pos1)
-    maze.is_special_cell(cell_pos2)    
-    maze.is_special_cell(cell_pos3)
-    maze.is_special_cell(cell_pos4)
+    # maze.is_special_cell(cell_pos1)
+    # maze.is_special_cell(cell_pos2)    
+    # maze.is_special_cell(cell_pos3)
+    # maze.is_special_cell(cell_pos4)
 
     # print('\n')
     # #####

@@ -1,9 +1,14 @@
-from maze import Maze
+import pygame
 
+class PrintMaze:
+    """ """
+    def __init__(self, mg_game):
+        self.screen = mg_game.screen
+        self.screen_rect = mg_game.screen.get_rect()
 
+        self.image = pygame.image.load('images/aiguille.png')
+        self.rect = self.image.get_rect()
+        self.rect.midbottom = self.screen_rect.midbottom
 
-map_max_x = len(current_map[0])
-map_max_y = len(current_map)
-
-for x in range(map_max_x):
-    print(current_map[x])
+    def blitme(self):
+        self.screen.blit(self.image, self.rect)
