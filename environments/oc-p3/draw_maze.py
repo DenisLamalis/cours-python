@@ -3,6 +3,7 @@ import sys
 
 from maze import Maze
 import settings as constants
+from position import Position
 
 class MazeScreen:
     """ """
@@ -61,8 +62,9 @@ class MazeScreen:
         pygame.display.flip()
 
     def screen_start(self):
-        a_start = list({(0, 3)})
+        """ Put MacGyver on the start position. """
         self.image = pygame.image.load('images/MacGyver.png').convert()
+        a_start = list({(0, 3)})
         pos_x = a_start[0][1] * 44
         pos_y = a_start[0][0] * 44
         self.window.blit(self.image, (pos_x, pos_y))
@@ -84,7 +86,7 @@ class MazeScreen:
 
 if __name__ == '__main__':
     
-    m = Maze(constants.FILENAME)   
+    m = Maze(constants.FILENAME)  
     ms = MazeScreen(m.paths, m.walls, m.start, m.goal, m.items)
     ms.draw_maze()
 

@@ -61,7 +61,7 @@ class Maze:
 # Tests & validations #
 #######################
 
-def main():
+def test_maze():
     maze = Maze(constants.FILENAME)
 
     # print('\n')
@@ -84,8 +84,8 @@ def main():
     # print(f'Positions of the {len(maze.paths)} paths  : {maze.paths}\n')
     # print(f'Positions of the {len(maze.walls)} walls : {maze.walls}\n')
 
-    print(f'The start is in this positions : {maze.start}\n')
-    print(f'The goal is in this positions : {maze.goal}\n') 
+    # print(f'The start is in this positions : {maze.start}\n')
+    # print(f'The goal is in this positions : {maze.goal}\n') 
     # print(f'The items are in this positions : {maze.items}\n')
 
     # print('\n')
@@ -113,5 +113,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    test_maze()
 
