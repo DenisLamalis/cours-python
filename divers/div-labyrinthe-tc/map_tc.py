@@ -17,7 +17,7 @@ class Map:
 
     @property
     def start_pos(self):
-        return list(self.start)
+        return list(self.start)[0]
 
     # def is_valid_path(self, position):
         # return position in self.paths

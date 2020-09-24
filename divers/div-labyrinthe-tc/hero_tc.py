@@ -12,7 +12,8 @@ class Hero:
             self.position = new_position
     
 def main():
-    hero = Hero('map-1.txt')
+    map = Map('map-1.txt')
+    hero = Hero(map)
     print(hero.position)
 
 if __name__ == "__main__":

@@ -17,6 +17,10 @@ class Maze:
         self.organize_the_maze()
         self.put_items()
 
+    @property
+    def start_pos(self):
+        return list(self.start)[0]
+
     def organize_the_maze(self):
         """ Organize the cells of the maze. """
         with open(self.filename) as infile:
