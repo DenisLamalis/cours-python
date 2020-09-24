@@ -4,15 +4,21 @@ import settings as constants
 class MacGyver:
     """ """
     def __init__(self, position):
+        """ Initialize position and bag. """
         self.mg_pos = position
+        self.bag = ''
  
     def move(self):
         """ """
-        print(self.mg_pos)
+        #
+        pass
+
+    def in_bag(self):
+        """ """
+        pass
 
 
 if __name__ == '__main__':
     
     instance_maze = Maze(constants.FILENAME) 
-    print(instance_maze.start) 
     instance_macgyver = MacGyver(instance_maze.start)
