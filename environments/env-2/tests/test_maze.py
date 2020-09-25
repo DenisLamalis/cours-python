@@ -1,5 +1,5 @@
 
-from .. maze import Maze
+from ..back.maze import Maze
 
 #######################
 # Tests & validations #
