@@ -21,6 +21,8 @@ class MazeScreen:
         self.screen_start()
         self.screen_goal()
 
+        self.draw_maze()
+
     def draw_maze(self):
         """ """
         while True:
@@ -80,9 +82,8 @@ class MazeScreen:
         pass
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     
-    m = Maze(constants.FILENAME)  
-    ms = MazeScreen(m.paths, m.walls, m.start, m.goal, m.items)
-    ms.draw_maze()
+#     m = Maze(constants.FILENAME)  
+#     ms = MazeScreen(m.paths, m.walls, m.start, m.goal, m.items)
 
