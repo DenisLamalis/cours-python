@@ -11,33 +11,21 @@ class MacGyver:
         self.bag = ''
         self.paths = maze.paths
 
-        self.move('d')
-        self.move('s')
-        self.move('s')
-        self.move('s')
-        self.move('d')
-        self.move('s')
-        self.move('z')
-        self.move('z')
-        self.move('z')
-
-
-
- 
     def move(self, direction):
-        if direction == 'z':
+        if direction == 'UP':
             if Position.up(self.mg_pos) in self.paths:
                 self.mg_pos = Position.up(self.mg_pos)
                 print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
-        if direction == 's':
+        if direction == 'DOWN':
             if Position.down(self.mg_pos) in self.paths:
                 self.mg_pos = Position.down(self.mg_pos)
                 print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
-        if direction == 'd':
+        if direction == 'RIGHT':
             if Position.right(self.mg_pos) in self.paths:
                 self.mg_pos = Position.right(self.mg_pos)
                 print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
-        if direction == 'q':
+                return self.mg_pos
+        if direction == 'LEFT':
             if Position.left(self.mg_pos) in self.paths:
                 self.mg_pos = Position.left(self.mg_pos)
                 print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')

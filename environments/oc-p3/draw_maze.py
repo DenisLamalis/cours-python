@@ -1,14 +1,14 @@
 import pygame
-import sys
 
 from maze import Maze
-import settings as constants
 from position import Position
+
+import settings as constants
 
 class MazeScreen:
     """ """
     def __init__(self, paths, walls, start, goal, items):
-        pygame.init()
+        # pygame.init()
         self.window = pygame.display.set_mode((660, 660))
         self.paths = paths
         self.walls = walls
@@ -21,14 +21,14 @@ class MazeScreen:
         self.screen_start()
         self.screen_goal()
 
-        self.draw_maze()
+        # self.draw_maze()
 
-    def draw_maze(self):
-        """ """
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+    # def draw_maze(self):
+    #     """ """
+    #     while True:
+    #         for event in pygame.event.get():
+    #             if event.type == pygame.QUIT:
+    #                 sys.exit()
 
     def screen_paths(self):
         """ """
@@ -61,15 +61,27 @@ class MazeScreen:
 
     def screen_start(self):
         """ Put MacGyver on the start position. """
-        self.image = pygame.image.load('images/MacGyver.png').convert()
+        self.img_mg = pygame.image.load('images/MacGyver.png').convert()
         a_start = list(self.start)[0]
         pos_x = a_start.y * 44
         pos_y = a_start.x * 44
-        self.window.blit(self.image, (pos_x, pos_y))
+        self.pos_mg = pygame.Rect((pos_x, pos_y, 28, 38))
+        self.window.blit(self.img_mg, (pos_x, pos_y))
 
         pygame.display.flip()
+    
+    # def pos_mg(self):
+        
+    #     a_start = list(self.start)[0]
+    #     pos_x = a_start.y * 44
+    #     pos_y = a_start.x * 44
+    #     self.pos_mg = pygame.Rect((pos_x, pos_y, 28, 38))
+    #     return self.pos_mg
+
+    #     pygame.display.flip()
 
     def screen_goal(self):
+        """ Put the Guard on the goal position. """
         a_goal = list(self.goal)[0]
         self.image = pygame.image.load('images/Gardien.png').convert()
         pos_x = a_goal.y * 44
