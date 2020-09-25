@@ -25,7 +25,7 @@ class Main:
         """ Start the main loop for the game. """
         while True:
             self.check_events()
-        pass
+            # self.check_special(cell_pos)
     
     def check_events(self):
         """ respond to keypresses. """
@@ -41,7 +41,6 @@ class Main:
         if event.key == pygame.K_RIGHT:
             # move MacGyver to the right
             self.mg.move('RIGHT')
-
         elif event.key == pygame.K_LEFT:
             self.mg.move('LEFT')
         elif event.key == pygame.K_DOWN:
@@ -50,6 +49,11 @@ class Main:
             self.mg.move('UP')
         elif event.key == pygame.K_q:
             sys.exit()
+
+    # def check_special(self, cell_pos):
+        # if cell == item
+        # if cell == goal
+        # pass
 
 
 if __name__ == "__main__":

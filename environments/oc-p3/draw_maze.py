@@ -20,6 +20,7 @@ class MazeScreen:
         self.screen_walls()
         self.screen_start()
         self.screen_goal()
+        self.screen_items()
 
         # self.draw_maze()
 
@@ -69,16 +70,6 @@ class MazeScreen:
         self.window.blit(self.img_mg, (pos_x, pos_y))
 
         pygame.display.flip()
-    
-    # def pos_mg(self):
-        
-    #     a_start = list(self.start)[0]
-    #     pos_x = a_start.y * 44
-    #     pos_y = a_start.x * 44
-    #     self.pos_mg = pygame.Rect((pos_x, pos_y, 28, 38))
-    #     return self.pos_mg
-
-    #     pygame.display.flip()
 
     def screen_goal(self):
         """ Put the Guard on the goal position. """
@@ -91,8 +82,16 @@ class MazeScreen:
         pygame.display.flip()
 
     def screen_items(self):
-        pass
-
+        a_items = list(self.items)
+        self.image = pygame.image.load('images/ether.png').convert()
+        i = 0
+        for item in a_items:
+            pos = list(a_items)[i]
+            pos_x = pos.y * 44
+            pos_y = pos.x * 44
+            self.window.blit(self.image, (pos_x, pos_y))
+            i = i + 1
+        pygame.display.flip()
 
 # if __name__ == '__main__':
     
