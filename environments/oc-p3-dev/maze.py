@@ -3,6 +3,7 @@ import sys
 
 import settings as constants
 from cells import Cells
+from skin import Skin
 
 class MazeGrid:
     """ """
@@ -12,6 +13,7 @@ class MazeGrid:
         self.window = pygame.display.set_mode(constants.SET_MODE)
         
         self.cells = cells
+        self.skin = Skin()
 
         self.display_maze(self.cells)
         self.draw_maze()
@@ -31,13 +33,13 @@ class MazeGrid:
             pos = list(list(paths)[i])[0]
             typ = list(list(paths)[i])[1]
             if typ == 'wall':
-                self.image = pygame.image.load('images/wall.bmp').convert()
+                self.image = pygame.image.load(self.skin.image('wall')).convert()
             if typ == 'path':
-                self.image = pygame.image.load('images/floor.bmp').convert()
+                self.image = pygame.image.load(self.skin.image('path')).convert()
             if typ == 'start':
-                self.image = pygame.image.load('images/MacGyver.png').convert()
+                self.image = pygame.image.load(self.skin.image('start')).convert()
             if typ == 'goal':
-                self.image = pygame.image.load('images/Gardien.png').convert()
+                self.image = pygame.image.load(self.skin.image('goal')).convert()
             pos_x = pos.y * 44
             pos_y = pos.x * 44
             self.window.blit(self.image, (pos_x, pos_y))

@@ -1,5 +1,6 @@
 import settings as constants
 from position import Position
+from skin import Skin
 
 class Cells:
     """ I'm the object who create the cell of the grid. """
@@ -47,7 +48,6 @@ def test_cells():
     cell = list(cells_in.cells)[0]
     
     print(cells_in.cell_position(cell))
-    print(cells_in.cell_positions(cells_in))
     print(cells_in.cell_type(cell))
 
 if __name__ == "__main__":
