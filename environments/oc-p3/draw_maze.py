@@ -22,6 +22,8 @@ class MazeScreen:
         self.screen_start()
         self.screen_goal()
         self.screen_items()
+        # self.display_mac()
+        # self.move_mac(self.position_perso)
 
         # self.draw_maze()
 
@@ -93,15 +95,21 @@ class MazeScreen:
             i = i + 1
         pygame.display.flip()
 
-    def display_mac(self, position_mac):
-        """ Display MacGyver on the maze. """
-        self.img_mg = pygame.image.load('images/MacGyver.png').convert()
-        position_mac = list(self.start)[0]
-        pos_x = position_mac.y * 44
-        pos_y = position_mac.x * 44
-        # self.pos_mg = pygame.Rect((pos_x, pos_y, 28, 38))
-        self.window.blit(self.img_mg, (pos_x, pos_y))
-        pass
+    # def display_mac(self):
+    #     """ Display MacGyver on the maze. """
+    #     self.img_mg = pygame.image.load('images/MacGyver.png').convert()
+    #     position_mac = list(self.start)[0]
+    #     pos_x = position_mac.y * 44
+    #     pos_y = position_mac.x * 44
+    #     self.position_perso = pygame.Rect((pos_x, pos_y, 28, 38))
+    #     self.window.blit(self.img_mg, self.position_perso)
+    #     pygame.display.flip()
+
+    # def move_mac(self, position_perso):
+    #     self.position_perso = position_perso.move(0,44)
+    #     self.window.blit(self.img_mg, self.position_perso)
+    #     pygame.display.flip()        
+
 
 # if __name__ == '__main__':
     

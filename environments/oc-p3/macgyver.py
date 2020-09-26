@@ -1,3 +1,4 @@
+
 from maze import Maze
 from position import Position
 import settings as constants
@@ -11,24 +12,28 @@ class MacGyver:
         self.bag = ''
         self.paths = maze.paths
 
+
     def move(self, direction):
         if direction == 'UP':
             if Position.up(self.mg_pos) in self.paths:
                 self.mg_pos = Position.up(self.mg_pos)
                 print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
+                return True
         if direction == 'DOWN':
             if Position.down(self.mg_pos) in self.paths:
                 self.mg_pos = Position.down(self.mg_pos)
                 print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
+                return True
         if direction == 'RIGHT':
             if Position.right(self.mg_pos) in self.paths:
                 self.mg_pos = Position.right(self.mg_pos)
                 print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
-                return self.mg_pos
+                return True
         if direction == 'LEFT':
             if Position.left(self.mg_pos) in self.paths:
                 self.mg_pos = Position.left(self.mg_pos)
                 print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
+                return True
 
     def in_bag(self):
         """ """

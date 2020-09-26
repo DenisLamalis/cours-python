@@ -13,6 +13,7 @@ class Maze:
         self.start = set()
         self.goal = set()
         self.items = set()
+        self.player = set()
 
         self.organize_the_maze()
         self.put_items()
@@ -31,6 +32,7 @@ class Maze:
                     elif col == constants.START_CHAR:
                         self.start.add(Position(x, y))
                         self.paths.add(Position(x, y))
+                        self.player.add(Position(x, y))
                     elif col == constants.GOAL_CHAR:
                         self.goal.add(Position(x, y))
                         self.paths.add(Position(x, y))
