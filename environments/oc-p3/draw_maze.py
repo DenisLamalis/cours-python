@@ -2,6 +2,7 @@ import pygame
 
 from maze import Maze
 from position import Position
+from macgyver import MacGyver
 
 import settings as constants
 
