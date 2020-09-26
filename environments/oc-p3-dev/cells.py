@@ -24,6 +24,12 @@ class Cells:
                     elif col == constants.WALL_CHAR:
                         self.cells.add((Position(x, y), 'wall'))
 
+    def cell_position(self, cell):
+        return list(cell)[0]
+
+    def cell_type(self, cell):
+        return list(cell)[1]
+
 
 #######################
 # Tests & validations #
@@ -38,6 +44,11 @@ def test_cells():
     print(f'A random cell position : {list(cells_in.cells)[0][0]}')
     print(f'A random cell type : {list(cells_in.cells)[0][1]}')
 
+    cell = list(cells_in.cells)[0]
+    
+    print(cells_in.cell_position(cell))
+    print(cells_in.cell_positions(cells_in))
+    print(cells_in.cell_type(cell))
 
 if __name__ == "__main__":
     test_cells()

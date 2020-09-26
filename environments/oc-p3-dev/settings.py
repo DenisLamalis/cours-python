@@ -7,3 +7,7 @@ FILENAME = 'map-1.txt'
 
 WIDTH = 15
 HEIGHT = 15
+
+# Pygame settings
+
+SET_MODE = (660, 660)
