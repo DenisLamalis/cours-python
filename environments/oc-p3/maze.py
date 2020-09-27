@@ -13,6 +13,9 @@ class Maze:
         self.start = set()
         self.goal = set()
         self.items = set()
+        self.item1 = set()
+        self.item2 = set()
+        self.item3 = set()
         self.player = set()
 
         self.organize_the_maze()
@@ -44,6 +47,9 @@ class Maze:
         free_paths = self.paths.difference(self.start)
         free_paths = free_paths.difference(self.goal)
         items_object = set(random.sample(free_paths, 3))
+        self.item1.add(list(items_object)[0])
+        self.item2.add(list(items_object)[1])
+        self.item3.add(list(items_object)[2])
         for item in items_object:
             self.items.add(item)
 
@@ -92,7 +98,7 @@ def test_maze():
 
     # print(f'The start is in this positions : {maze.start}\n')
     # print(f'The goal is in this positions : {maze.goal}\n') 
-    # print(f'The items are in this positions : {maze.items}\n')
+    print(f'The items are in this positions : {maze.items}\n')
 
     # print('\n')
     #####
