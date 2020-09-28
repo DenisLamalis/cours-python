@@ -2,11 +2,10 @@ import pygame
 import sys
 
 from maze import Maze
-from draw_maze import MazeScreen
+from displaymaze import DisplayMaze
 from macgyver import MacGyver
 from position import Position
-
-import settings as constants
+from settings import Settings
 
 class Main:
     """ Game management. """
@@ -14,13 +13,15 @@ class Main:
     def __init__(self):
         """ Initialize the game. """
         pygame.init()
-        self.window = pygame.display.set_mode((660, 660))
+        self.settings = Settings()
+        self.window = pygame.display.set_mode(self.settings.maze_dimensions)
 
-        self.m = Maze(constants.FILENAME)  
+        self.m = Maze(self.settings.FILENAME)  
         self.mg = MacGyver(self.m)
 
+
         # display the maze with pygame
-        MazeScreen(self.m.paths, self.m.walls, self.m.start, self.m.goal, self.m.item1, self.m.item2, self.m.item3)
+        DisplayMaze(self.m.paths, self.m.walls, self.m.start, self.m.goal, self.m.item1, self.m.item2, self.m.item3)
 
         self.start = self.m.start
         self.display_mac()
@@ -48,22 +49,22 @@ class Main:
             # move MacGyver to the right
             validate = self.mg.move('RIGHT')
             if validate == True:
-                self.move_mac((44, 0))
+                self.move_mac(((self.settings.cell_dimension_x), 0))
             self.check_end()
         elif event.key == pygame.K_LEFT:
             validate = self.mg.move('LEFT')
             if validate == True:
-                self.move_mac((-44, 0))
+                self.move_mac(((self.settings.cell_dimension_x * -1), 0))
             self.check_end()
         elif event.key == pygame.K_DOWN:
             validate = self.mg.move('DOWN')
             if validate == True:
-                self.move_mac((0, 44))
+                self.move_mac((0, (self.settings.cell_dimension_x)))
             self.check_end()
         elif event.key == pygame.K_UP:
             validate = self.mg.move('UP')
             if validate == True:
-                self.move_mac((0, -44))
+                self.move_mac((0, (self.settings.cell_dimension_x * -1)))
             self.check_end()
         elif event.key == pygame.K_q:
             sys.exit()
@@ -97,12 +98,12 @@ class Main:
     def loose_game(self):
         self.msg_loose()
         self.state = False
-        pygame.time.wait(4000)
+        pygame.time.wait(3000)
         return self.state
 
     def win_game(self):
         self.msg_win()
-        pygame.time.wait(4000)
+        pygame.time.wait(3000)
         self.state = False
         return self.state
 

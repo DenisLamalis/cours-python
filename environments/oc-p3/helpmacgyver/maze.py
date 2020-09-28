@@ -1,12 +1,13 @@
 import random
 
-import settings as constants
+from settings import Settings
 from position import Position
 
 class Maze:
 
     def __init__(self, filename):
         """ initialize the maze. """
+        self.settings = Settings()
         self.filename = filename
         self.paths = set()
         self.walls = set()
@@ -42,16 +43,16 @@ class Maze:
         with open(self.filename) as infile:
             for x, line in enumerate(infile):
                 for y, col in enumerate(line):
-                    if col == constants.PATH_CHAR:
+                    if col == self.settings.PATH_CHAR:
                         self.paths.add(Position(x, y))
-                    elif col == constants.START_CHAR:
+                    elif col == self.settings.START_CHAR:
                         self.start.add(Position(x, y))
                         self.paths.add(Position(x, y))
                         self.player.add(Position(x, y))
-                    elif col == constants.GOAL_CHAR:
+                    elif col == self.settings.GOAL_CHAR:
                         self.goal.add(Position(x, y))
                         self.paths.add(Position(x, y))
-                    elif col == constants.WALL_CHAR:
+                    elif col == self.settings.WALL_CHAR:
                         self.walls.add(Position(x, y))
 
     def put_items(self):
@@ -88,7 +89,8 @@ class Maze:
 #######################
 
 def test_maze():
-    maze = Maze(constants.FILENAME)
+    settings = Settings()
+    maze = Maze(settings.FILENAME)
 
     # print('\n')
     # #####    
