@@ -18,6 +18,7 @@ class Main:
 
         self.m = Maze(constants.FILENAME)  
         self.mg = MacGyver(self.m)
+        # self.end = self.mg.mac_goal
 
         # display the maze with pygame
         MazeScreen(self.m.paths, self.m.walls, self.m.start, self.m.goal, self.m.item1, self.m.item2, self.m.item3)
@@ -29,7 +30,6 @@ class Main:
         """ Start the main loop for the game. """
         while True:
             self.check_events()
-            # self.check_special(cell_pos)
     
     def check_events(self):
         """ respond to keypresses. """
@@ -47,18 +47,22 @@ class Main:
             validate = self.mg.move('RIGHT')
             if validate == True:
                 self.move_mac((44, 0))
+            self.check_end()
         elif event.key == pygame.K_LEFT:
             validate = self.mg.move('LEFT')
             if validate == True:
                 self.move_mac((-44, 0))
+            self.check_end()
         elif event.key == pygame.K_DOWN:
             validate = self.mg.move('DOWN')
             if validate == True:
                 self.move_mac((0, 44))
+            self.check_end()
         elif event.key == pygame.K_UP:
             validate = self.mg.move('UP')
             if validate == True:
                 self.move_mac((0, -44))
+            self.check_end()
         elif event.key == pygame.K_q:
             sys.exit()
 
@@ -81,10 +85,13 @@ class Main:
         pygame.display.flip() 
 
 
-    # def check_special(self, cell_pos):
-        # if cell == item
-        # if cell == goal
-        # pass
+    def check_end(self):
+        if self.mg.mac_goal == True:
+            if 'item1' in self.mg.bag and 'item2' in self.mg.bag and 'item3' in self.mg.bag:
+                print('win')
+            else:
+                print('loose')
+
 
 
 if __name__ == "__main__":
