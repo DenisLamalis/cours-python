@@ -23,7 +23,20 @@ class Maze:
 
     @property
     def start_pos(self):
-        return list(self.start)[0]
+        return list(self.start)[0]    
+    
+    @property
+    def item1_pos(self):
+        return list(self.item1)[0]
+    
+    @property
+    def item2_pos(self):
+        return list(self.item2)[0]
+
+    @property
+    def item3_pos(self):
+        return list(self.item3)[0]
+    
 
     def organize_the_maze(self):
         """ Organize the cells of the maze. """
@@ -60,17 +73,22 @@ class Maze:
     def is_special_cell(self, cell_pos):
         """ Determine if a cell is special (will be modify without the print) """
         if cell_pos in self.start:
-            print('it is the start')
+            # print('it is the start')
+            return False
         elif cell_pos in self.goal:
-            print('it is the goal')
+            # print('it is the goal')
+            return 'goal'
         elif cell_pos in self.item1:
-            print('there are a item1')
+            # print('there are a item1')
+            return 'item1'
         elif cell_pos in self.item2:
-            print('there are a item2')
+            # print('there are a item2')
+            return 'item2'
         elif cell_pos in self.item3:
-            print('there are a item3')
+            # print('there are a item3')
+            return 'item3'
         else:
-            print('nothing special')   
+            return False   
 
 
 #######################

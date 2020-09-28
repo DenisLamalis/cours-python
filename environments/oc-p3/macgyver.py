@@ -9,8 +9,12 @@ class MacGyver:
         """ Initialize position and bag. """
         self.maze = maze
         self.mg_pos = self.maze.start_pos
+        self.item1_pos = self.maze.item1_pos
+        self.item2_pos = self.maze.item2_pos
+        self.item3_pos = self.maze.item3_pos
         self.bag = ''
         self.paths = maze.paths
+
 
 
     def move(self, direction):
@@ -18,21 +22,33 @@ class MacGyver:
             if Position.up(self.mg_pos) in self.paths:
                 self.mg_pos = Position.up(self.mg_pos)
                 # print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
+                special_cell = self.maze.is_special_cell(self.mg_pos)
+                if special_cell != False:
+                    print(special_cell)
                 return True
         if direction == 'DOWN':
             if Position.down(self.mg_pos) in self.paths:
                 self.mg_pos = Position.down(self.mg_pos)
                 # print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
+                special_cell = self.maze.is_special_cell(self.mg_pos)
+                if special_cell != False:
+                    print(special_cell)
                 return True
         if direction == 'RIGHT':
             if Position.right(self.mg_pos) in self.paths:
                 self.mg_pos = Position.right(self.mg_pos)
                 # print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
+                special_cell = self.maze.is_special_cell(self.mg_pos)
+                if special_cell != False:
+                    print(special_cell)
                 return True
         if direction == 'LEFT':
             if Position.left(self.mg_pos) in self.paths:
                 self.mg_pos = Position.left(self.mg_pos)
                 # print(f'La case est valide, nouvelle position de MacGyver : {self.mg_pos}')
+                special_cell = self.maze.is_special_cell(self.mg_pos)
+                if special_cell != False:
+                    print(special_cell)
                 return True
 
     def in_bag(self):
