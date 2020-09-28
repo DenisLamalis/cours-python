@@ -1,7 +1,8 @@
 import pygame
 
-from maze import Maze
+# from maze import Maze
 from settings import Settings
+
 
 class DisplayMaze:
     """ I'm the object who display the maze with Pygame. """
@@ -49,12 +50,4 @@ class DisplayMaze:
             pos_y = pos.x * self.data.cell_dimension_y
             self.window.blit(self.image, (pos_x, pos_y))
             i = i + 1
-        pygame.display.flip()    
-
-
-if __name__ == '__main__':
-    
-    settings = Settings()
-    m = Maze(settings.FILENAME)  
-    ms = DisplayMaze(m.paths, m.walls, m.start, m.goal, m.item1, m.item2, m.item3)
-
+        pygame.display.flip()

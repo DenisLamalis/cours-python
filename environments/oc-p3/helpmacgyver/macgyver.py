@@ -1,7 +1,8 @@
 
-from maze import Maze
+# from maze import Maze
 from position import Position
-import settings as constants
+# import settings as constants
+
 
 class MacGyver:
     """ """
@@ -17,33 +18,33 @@ class MacGyver:
         self.mac_goal = False
 
     def move(self, direction):
-        """ I move the player MacGyver and I check if there is something special to do after. """
+        """ I move player and check if there is something to do after. """
         if direction == 'UP':
             if Position.up(self.mg_pos) in self.paths:
                 self.mg_pos = Position.up(self.mg_pos)
                 special_cell = self.maze.is_special_cell(self.mg_pos)
-                if special_cell != False:
+                if special_cell is not False:
                     self.what_special(special_cell)
                 return True
         if direction == 'DOWN':
             if Position.down(self.mg_pos) in self.paths:
                 self.mg_pos = Position.down(self.mg_pos)
                 special_cell = self.maze.is_special_cell(self.mg_pos)
-                if special_cell != False:
+                if special_cell is not False:
                     self.what_special(special_cell)
                 return True
         if direction == 'RIGHT':
             if Position.right(self.mg_pos) in self.paths:
                 self.mg_pos = Position.right(self.mg_pos)
                 special_cell = self.maze.is_special_cell(self.mg_pos)
-                if special_cell != False:
+                if special_cell is not False:
                     self.what_special(special_cell)
                 return True
         if direction == 'LEFT':
             if Position.left(self.mg_pos) in self.paths:
                 self.mg_pos = Position.left(self.mg_pos)
                 special_cell = self.maze.is_special_cell(self.mg_pos)
-                if special_cell != False:
+                if special_cell is not False:
                     self.what_special(special_cell)
                 return True
 
@@ -58,13 +59,6 @@ class MacGyver:
         elif special_cell == 'goal':
             self.mac_goal = True
 
-        
     def pouch_bag(self, item):
         """ I pouch an item in the bag. """
         self.bag.append(item)
-
-
-if __name__ == '__main__':
-    
-    instance_maze = Maze(constants.FILENAME) 
-    instance_macgyver = MacGyver(instance_maze)

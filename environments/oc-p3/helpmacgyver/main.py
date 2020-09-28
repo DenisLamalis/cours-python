@@ -4,19 +4,19 @@ import sys
 from maze import Maze
 from displaymaze import DisplayMaze
 from macgyver import MacGyver
-from position import Position
+# from position import Position
 from settings import Settings
+
 
 class Main:
     """ Game management. """
-    
+
     def __init__(self):
         """ Initialize the game. """
         pygame.init()
         self.settings = Settings()
         self.window = pygame.display.set_mode(self.settings.maze_dimensions)
-
-        self.m = Maze(self.settings.FILENAME)  
+        self.m = Maze(self.settings.FILENAME)
         self.mg = MacGyver(self.m)
 
         # display the maze with pygame
@@ -29,10 +29,10 @@ class Main:
     def run_game(self):
         """ Start the main loop for the game. """
 
-        while self.state == True:
+        while self.state is True:
             # self.msg_win()
             self.check_events()
-    
+
     def check_events(self):
         """ respond to keypresses. """
         for event in pygame.event.get():
@@ -47,22 +47,22 @@ class Main:
         if event.key == pygame.K_RIGHT:
             # move MacGyver to the right
             validate = self.mg.move('RIGHT')
-            if validate == True:
+            if validate is True:
                 self.move_mac(((self.settings.cell_dimension_x), 0))
             self.check_end()
         elif event.key == pygame.K_LEFT:
             validate = self.mg.move('LEFT')
-            if validate == True:
+            if validate is True:
                 self.move_mac(((self.settings.cell_dimension_x * -1), 0))
             self.check_end()
         elif event.key == pygame.K_DOWN:
             validate = self.mg.move('DOWN')
-            if validate == True:
+            if validate is True:
                 self.move_mac((0, (self.settings.cell_dimension_x)))
             self.check_end()
         elif event.key == pygame.K_UP:
             validate = self.mg.move('UP')
-            if validate == True:
+            if validate is True:
                 self.move_mac((0, (self.settings.cell_dimension_x * -1)))
             self.check_end()
         elif event.key == pygame.K_q:
@@ -84,12 +84,11 @@ class Main:
         self.window.blit(self.image, self.position_perso)
         self.position_perso = self.position_perso.move(move)
         self.window.blit(self.img_mg, self.position_perso)
-        pygame.display.flip() 
-
+        pygame.display.flip()
 
     def check_end(self):
         """ I'm checking if this is the end cell. """
-        if self.mg.mac_goal == True:
+        if self.mg.mac_goal is True:
             if 'item1' in self.mg.bag and 'item2' in self.mg.bag and 'item3' in self.mg.bag:
                 self.win_game()
             else:
