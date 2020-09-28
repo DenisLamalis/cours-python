@@ -18,7 +18,6 @@ class Main:
 
         self.m = Maze(constants.FILENAME)  
         self.mg = MacGyver(self.m)
-        # self.end = self.mg.mac_goal
 
         # display the maze with pygame
         MazeScreen(self.m.paths, self.m.walls, self.m.start, self.m.goal, self.m.item1, self.m.item2, self.m.item3)

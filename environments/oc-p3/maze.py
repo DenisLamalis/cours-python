@@ -12,7 +12,6 @@ class Maze:
         self.walls = set()
         self.start = set()
         self.goal = set()
-        # self.items = set()
         self.item1 = set()
         self.item2 = set()
         self.item3 = set()
@@ -63,8 +62,6 @@ class Maze:
         self.item1.add(list(items_object)[0])
         self.item2.add(list(items_object)[1])
         self.item3.add(list(items_object)[2])
-        # for item in items_object:
-        #     self.items.add(item)
 
     def is_valid_cell(self, position):
         """ Return if a cell is valid or not. """     
@@ -73,19 +70,14 @@ class Maze:
     def is_special_cell(self, cell_pos):
         """ Determine if a cell is special (will be modify without the print) """
         if cell_pos in self.start:
-            # print('it is the start')
             return False
         elif cell_pos in self.goal:
-            # print('it is the goal')
             return 'goal'
         elif cell_pos in self.item1:
-            # print('there are a item1')
             return 'item1'
         elif cell_pos in self.item2:
-            # print('there are a item2')
             return 'item2'
         elif cell_pos in self.item3:
-            # print('there are a item3')
             return 'item3'
         else:
             return False   
