@@ -19,7 +19,6 @@ class Main:
         self.m = Maze(self.settings.FILENAME)  
         self.mg = MacGyver(self.m)
 
-
         # display the maze with pygame
         DisplayMaze(self.m.paths, self.m.walls, self.m.start, self.m.goal, self.m.item1, self.m.item2, self.m.item3)
 
@@ -71,7 +70,7 @@ class Main:
 
     def display_mac(self):
         """ Display MacGyver on the maze. """
-        self.img_mg = pygame.image.load('images/MacGyver.png').convert()
+        self.img_mg = pygame.image.load(self.settings.macgyver).convert()
         position_mac = list(self.start)[0]
         pos_x = position_mac.y * 44
         pos_y = position_mac.x * 44
@@ -80,8 +79,8 @@ class Main:
         pygame.display.flip()
 
     def move_mac(self, move):
-        """ """
-        self.image = pygame.image.load('images/floor.bmp').convert()
+        """ I'm moving the image of MacGYver. """
+        self.image = pygame.image.load(self.settings.floor).convert()
         self.window.blit(self.image, self.position_perso)
         self.position_perso = self.position_perso.move(move)
         self.window.blit(self.img_mg, self.position_perso)
@@ -89,6 +88,7 @@ class Main:
 
 
     def check_end(self):
+        """ I'm checking if this is the end cell. """
         if self.mg.mac_goal == True:
             if 'item1' in self.mg.bag and 'item2' in self.mg.bag and 'item3' in self.mg.bag:
                 self.win_game()
@@ -96,24 +96,28 @@ class Main:
                 self.loose_game()
 
     def loose_game(self):
+        """ I'm saying this is a loose game and I'm closing the game. """
         self.msg_loose()
         self.state = False
         pygame.time.wait(3000)
         return self.state
 
     def win_game(self):
+        """ I'm saying this is a win game and I'm closing the game. """
         self.msg_win()
         pygame.time.wait(3000)
         self.state = False
         return self.state
 
     def msg_loose(self):
+        """ I display the loose text. """
         font = pygame.font.SysFont("arial", 56)
         text = font.render("  You loose !  ", True, (255, 255, 255), (0, 0, 0))
         self.window.blit(text, (200, 300))
         pygame.display.flip()
 
     def msg_win(self):
+        """ I display the win text"""
         font = pygame.font.SysFont("arial", 56)
         text = font.render("  You win !  ", True, (0, 0, 0), (255, 255, 255))
         self.window.blit(text, (200, 300))

@@ -8,7 +8,7 @@ class DisplayMaze:
     def __init__(self, paths, walls, start, goal, item1, item2, item3):
         """ I'm initialize the object DisplayMaze. """
         self.data = Settings()
-        self.window = pygame.display.set_mode((660, 660))
+        self.window = pygame.display.set_mode(self.data.maze_dimensions)
         self.paths = paths
         self.walls = walls
         self.start = start
@@ -18,12 +18,12 @@ class DisplayMaze:
         self.item3 = item3
 
         self.display_maze(paths)
-        self.display_maze(self.walls)
-        self.display_maze(self.start)
-        self.display_maze(self.goal)
-        self.display_maze(self.item1)
-        self.display_maze(self.item2)
-        self.display_maze(self.item3)
+        self.display_maze(walls)
+        self.display_maze(start)
+        self.display_maze(goal)
+        self.display_maze(item1)
+        self.display_maze(item2)
+        self.display_maze(item3)
 
     def display_maze(self, type):
         """ I'm the function who put a image on each cells. """

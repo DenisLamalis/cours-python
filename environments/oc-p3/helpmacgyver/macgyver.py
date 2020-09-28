@@ -17,7 +17,7 @@ class MacGyver:
         self.mac_goal = False
 
     def move(self, direction):
-        """ """
+        """ I move the player MacGyver and I check if there is something special to do after. """
         if direction == 'UP':
             if Position.up(self.mg_pos) in self.paths:
                 self.mg_pos = Position.up(self.mg_pos)
@@ -48,7 +48,7 @@ class MacGyver:
                 return True
 
     def what_special(self, special_cell):
-        """ """
+        """ I'm looking if there is a something special on the cell. """
         if special_cell == 'item1':
             self.pouch_bag(special_cell)
         elif special_cell == 'item2':
@@ -60,7 +60,7 @@ class MacGyver:
 
         
     def pouch_bag(self, item):
-        """ """
+        """ I pouch an item in the bag. """
         self.bag.append(item)
 
 
