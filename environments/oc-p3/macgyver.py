@@ -57,13 +57,11 @@ class MacGyver:
             self.pouch_bag(special_cell)
         elif special_cell == 'goal':
             self.mac_goal = True
-            print(special_cell)
-            print(self.mac_goal)
+
         
     def pouch_bag(self, item):
         """ """
         self.bag.append(item)
-        print(len(self.bag), self.bag)
 
 
 if __name__ == '__main__':

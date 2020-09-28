@@ -24,10 +24,13 @@ class Main:
 
         self.start = self.m.start
         self.display_mac()
+        self.state = True
 
     def run_game(self):
         """ Start the main loop for the game. """
-        while True:
+
+        while self.state == True:
+            # self.msg_win()
             self.check_events()
     
     def check_events(self):
@@ -87,10 +90,33 @@ class Main:
     def check_end(self):
         if self.mg.mac_goal == True:
             if 'item1' in self.mg.bag and 'item2' in self.mg.bag and 'item3' in self.mg.bag:
-                print('win')
+                self.win_game()
             else:
-                print('loose')
+                self.loose_game()
 
+    def loose_game(self):
+        self.msg_loose()
+        self.state = False
+        pygame.time.wait(4000)
+        return self.state
+
+    def win_game(self):
+        self.msg_win()
+        pygame.time.wait(4000)
+        self.state = False
+        return self.state
+
+    def msg_loose(self):
+        font = pygame.font.SysFont("arial", 56)
+        text = font.render("  You loose !  ", True, (255, 255, 255), (0, 0, 0))
+        self.window.blit(text, (200, 300))
+        pygame.display.flip()
+
+    def msg_win(self):
+        font = pygame.font.SysFont("arial", 56)
+        text = font.render("  You win !  ", True, (0, 0, 0), (255, 255, 255))
+        self.window.blit(text, (200, 300))
+        pygame.display.flip()
 
 
 if __name__ == "__main__":
