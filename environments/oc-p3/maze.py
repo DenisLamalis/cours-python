@@ -12,7 +12,7 @@ class Maze:
         self.walls = set()
         self.start = set()
         self.goal = set()
-        self.items = set()
+        # self.items = set()
         self.item1 = set()
         self.item2 = set()
         self.item3 = set()
@@ -50,8 +50,8 @@ class Maze:
         self.item1.add(list(items_object)[0])
         self.item2.add(list(items_object)[1])
         self.item3.add(list(items_object)[2])
-        for item in items_object:
-            self.items.add(item)
+        # for item in items_object:
+        #     self.items.add(item)
 
     def is_valid_cell(self, position):
         """ Return if a cell is valid or not. """     
@@ -63,8 +63,12 @@ class Maze:
             print('it is the start')
         elif cell_pos in self.goal:
             print('it is the goal')
-        elif cell_pos in self.items:
-            print('there are a item')
+        elif cell_pos in self.item1:
+            print('there are a item1')
+        elif cell_pos in self.item2:
+            print('there are a item2')
+        elif cell_pos in self.item3:
+            print('there are a item3')
         else:
             print('nothing special')   
 
@@ -98,7 +102,9 @@ def test_maze():
 
     # print(f'The start is in this positions : {maze.start}\n')
     # print(f'The goal is in this positions : {maze.goal}\n') 
-    print(f'The items are in this positions : {maze.items}\n')
+    # print(f'The item1 are in this positions : {maze.item1}\n')
+    # print(f'The item2 are in this positions : {maze.item2}\n')
+    # print(f'The item3 are in this positions : {maze.item3}\n')
 
     # print('\n')
     #####

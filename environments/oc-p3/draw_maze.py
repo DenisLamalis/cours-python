@@ -8,20 +8,24 @@ import settings as constants
 
 class MazeScreen:
     """ """
-    def __init__(self, paths, walls, start, goal, items):
+    def __init__(self, paths, walls, start, goal, item1, item2, item3):
         # pygame.init()
         self.window = pygame.display.set_mode((660, 660))
         self.paths = paths
         self.walls = walls
         self.start = start
         self.goal = goal
-        self.items = items
+        self.item1 = item1
+        self.item2 = item2
+        self.item3 = item3
 
         self.screen_paths()
         self.screen_walls()
         self.screen_start()
         self.screen_goal()
-        self.screen_items()
+        self.screen_item1()
+        self.screen_item2()
+        self.screen_item3()
         # self.display_mac()
         # self.move_mac(self.position_perso)
 
@@ -83,9 +87,33 @@ class MazeScreen:
 
         pygame.display.flip()
 
-    def screen_items(self):
-        a_items = list(self.items)
+    def screen_item1(self):
+        a_items = list(self.item1)
         self.image = pygame.image.load('images/ether.png').convert()
+        i = 0
+        for item in a_items:
+            pos = list(a_items)[i]
+            pos_x = pos.y * 44
+            pos_y = pos.x * 44
+            self.window.blit(self.image, (pos_x, pos_y))
+            i = i + 1
+        pygame.display.flip()
+
+    def screen_item2(self):
+        a_items = list(self.item2)
+        self.image = pygame.image.load('images/seringue.png').convert()
+        i = 0
+        for item in a_items:
+            pos = list(a_items)[i]
+            pos_x = pos.y * 44
+            pos_y = pos.x * 44
+            self.window.blit(self.image, (pos_x, pos_y))
+            i = i + 1
+        pygame.display.flip()
+
+    def screen_item3(self):
+        a_items = list(self.item3)
+        self.image = pygame.image.load('images/tube_plastique.png').convert()
         i = 0
         for item in a_items:
             pos = list(a_items)[i]

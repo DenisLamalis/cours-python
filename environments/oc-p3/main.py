@@ -20,7 +20,7 @@ class Main:
         self.mg = MacGyver(self.m)
 
         # display the maze with pygame
-        MazeScreen(self.m.paths, self.m.walls, self.m.start, self.m.goal, self.m.items)
+        MazeScreen(self.m.paths, self.m.walls, self.m.start, self.m.goal, self.m.item1, self.m.item2, self.m.item3)
 
         self.start = self.m.start
         self.display_mac()
