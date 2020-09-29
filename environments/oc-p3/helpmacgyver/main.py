@@ -70,16 +70,16 @@ class Main:
         """ Display MacGyver on the maze. """
         self.img_mg = pygame.image.load(self.settings.macgyver).convert()
         position_mac = list(self.start)[0]
-        pos_x = position_mac.y * 44
-        pos_y = position_mac.x * 44
-        self.position_perso = pygame.Rect((pos_x, pos_y, 28, 38))
+        pos_x = position_mac.y * self.settings.cell_dimension_x
+        pos_y = position_mac.x * self.settings.cell_dimension_y
+        self.position_perso = pygame.Rect((pos_x, pos_y, 40, 40))
         self.window.blit(self.img_mg, self.position_perso)
         pygame.display.flip()
 
     def move_mac(self, move):
         """ I'm moving the image of MacGYver. """
-        self.image = pygame.image.load(self.settings.floor).convert()
-        self.window.blit(self.image, self.position_perso)
+        self.img_floor = pygame.image.load(self.settings.floor).convert()
+        self.window.blit(self.img_floor, self.position_perso)
         self.position_perso = self.position_perso.move(move)
         self.window.blit(self.img_mg, self.position_perso)
         pygame.display.flip()

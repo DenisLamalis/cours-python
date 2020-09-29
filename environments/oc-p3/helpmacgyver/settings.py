@@ -1,8 +1,8 @@
 
 class Settings:
-    """ """
+    """ I'm the settings of the game. """
     def __init__(self):
-        """ """
+        # Maze settings
         self.START_CHAR = 'S'
         self.GOAL_CHAR = 'G'
         self.PATH_CHAR = '.'
@@ -18,7 +18,7 @@ class Settings:
         self.item2 = 'images/seringue.png'
         self.item3 = 'images/tube_plastique.png'
 
-        # Pygame dimension
+        # Pygame dimensions
         self.cell_dimension_x = 44
         self.cell_dimension_y = 44
         self.nb_cell_x = 15
