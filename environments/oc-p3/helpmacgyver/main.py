@@ -5,16 +5,18 @@ from maze import Maze
 from displaymaze import DisplayMaze
 from macgyver import MacGyver
 from settings import Settings
+from gameadmin import GameAdmin
 
 
 class Main:
-    """ Game management. """
+    """ I'm managing the game. """
 
     def __init__(self):
         """ Initialize the game. """
         pygame.init()
         self.settings = Settings()
         self.window = pygame.display.set_mode(self.settings.maze_dimensions)
+        self.admin = GameAdmin(self.window)
         self.m = Maze(self.settings.FILENAME)
         self.mg = MacGyver(self.m)
 
@@ -27,7 +29,6 @@ class Main:
 
     def run_game(self):
         """ Start the main loop for the game. """
-
         while self.state is True:
             self.check_events()
 
@@ -41,7 +42,6 @@ class Main:
 
     def _check_keydown_events(self, event):
         """ respond to keypresses """
-
         if event.key == pygame.K_RIGHT:
             # move MacGyver to the right
             validate = self.mg.move('RIGHT')
@@ -88,37 +88,9 @@ class Main:
         """ I'm checking if this is the end cell. """
         if self.mg.mac_goal is True:
             if 'item1' in self.mg.bag and 'item2' in self.mg.bag and 'item3' in self.mg.bag:
-                self.win_game()
+                self.state = self.admin.win_game()
             else:
-                self.loose_game()
-
-    def loose_game(self):
-        """ I'm saying this is a loose game and I'm closing the game. """
-        self.msg_loose()
-        self.state = False
-        pygame.time.wait(3000)
-        return self.state
-
-    def win_game(self):
-        """ I'm saying this is a win game and I'm closing the game. """
-        self.msg_win()
-        pygame.time.wait(3000)
-        self.state = False
-        return self.state
-
-    def msg_loose(self):
-        """ I display the loose text. """
-        font = pygame.font.SysFont("arial", 56)
-        text = font.render("  You loose !  ", True, (255, 255, 255), (0, 0, 0))
-        self.window.blit(text, (200, 300))
-        pygame.display.flip()
-
-    def msg_win(self):
-        """ I display the win text"""
-        font = pygame.font.SysFont("arial", 56)
-        text = font.render("  You win !  ", True, (0, 0, 0), (255, 255, 255))
-        self.window.blit(text, (200, 300))
-        pygame.display.flip()
+                self.state = self.admin.loose_game()
 
 
 if __name__ == "__main__":
