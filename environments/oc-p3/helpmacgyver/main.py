@@ -4,7 +4,6 @@ import sys
 from maze import Maze
 from displaymaze import DisplayMaze
 from macgyver import MacGyver
-# from position import Position
 from settings import Settings
 
 
@@ -30,7 +29,6 @@ class Main:
         """ Start the main loop for the game. """
 
         while self.state is True:
-            # self.msg_win()
             self.check_events()
 
     def check_events(self):
