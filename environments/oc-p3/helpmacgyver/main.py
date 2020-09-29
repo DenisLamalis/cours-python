@@ -72,7 +72,7 @@ class Main:
         position_mac = list(self.start)[0]
         pos_x = position_mac.y * self.settings.cell_dimension_x
         pos_y = position_mac.x * self.settings.cell_dimension_y
-        self.position_perso = pygame.Rect((pos_x, pos_y, 40, 40))
+        self.position_perso = pygame.Rect((pos_x, pos_y, self.settings.img_dimension_x, self.settings.img_dimension_y))
         self.window.blit(self.img_mg, self.position_perso)
         pygame.display.flip()
 

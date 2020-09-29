@@ -17,6 +17,8 @@ class Settings:
         self.item1 = 'images/ether.png'
         self.item2 = 'images/seringue.png'
         self.item3 = 'images/tube_plastique.png'
+        self.img_dimension_x = 40
+        self.img_dimension_y = 40
 
         # Pygame dimensions
         self.cell_dimension_x = 44
