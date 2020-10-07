@@ -1,7 +1,8 @@
 import json
 
 class Agent:
-    
+    """ """
+
     def __init__(self, **agent_attributes):
         for attr_name, attr_value in agent_attributes.items():
             setattr(self, attr_name, attr_value)
