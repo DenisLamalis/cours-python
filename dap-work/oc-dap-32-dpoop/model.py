@@ -1,6 +1,7 @@
 import json
 import math
 
+
 class Agent:
 
     def __init__(self, position, **agent_attributes):
