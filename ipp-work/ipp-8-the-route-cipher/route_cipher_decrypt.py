@@ -48,9 +48,6 @@ key = """ -1 2 -3 4 """
 #==============================================================================
 
 
-
-
-
 def main():
     """Run program and print decrypted plaintext."""
     print("\nCiphertext = {}".format(ciphertext))
