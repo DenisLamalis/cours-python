@@ -1,5 +1,5 @@
 # Head First Chapter 1
-# UNderstanding IDLE's windows
+# Understanding IDLE's windows
 
 from datetime import datetime
 
