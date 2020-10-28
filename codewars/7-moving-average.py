@@ -34,5 +34,8 @@ def moving_average(values,n):
 
 print(moving_average([40, 30, 50, 46, 39, 44], 7))
 
-    # if 0 < n <= len(a): return [sum(a[i:i+n]) / n for i in range(len(a) - n + 1)]
-    # return n and [sum(arr[i:i + n]) / n for i in range(len(arr) - n + 1)] or None
+    # def moving_average(a, n):
+    #   if 0 < n <= len(a): return [sum(a[i:i+n]) / n for i in range(len(a) - n + 1)]
+    
+    # def moving_average(arr, n):
+    #   return n and [sum(arr[i:i + n]) / n for i in range(len(arr) - n + 1)] or None
