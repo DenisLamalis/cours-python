@@ -8,6 +8,8 @@ def remove_consecutive_duplicates(words):
     #   regarder word 1 + 2
     #   ...
     # si non regarder word 2 + 3
+    word_list = words.split(" ")
+    print(word_list)
     pass
 
 
