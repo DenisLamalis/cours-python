@@ -1,24 +1,19 @@
 # Remove consecutive duplicate words
 
 def remove_consecutive_duplicates(words):
-    # transformer words en liste
-    # regarder word 1 + 2
-    # sont-ils égaux ?
-    # si oui delete le word 2
-    #   regarder word 1 + 2
-    #   ...
-    # si non regarder word 2 + 3
     word_list = words.split(" ")
 
-    for x in range(len(word_list)):
-        print(word_list[x])
-        
-        if word_list[x] == word_list[x]:
-            del word_list[x]
-            x = x - 1
-        
-        #     if word_list[x] == word_list[x]:
-        #         del word_list[x]
+    for y in word_list:
+        index = word_list.index(y)
+        print("y: ",y,"y+1: ",word_list[index+1])
+        if y == word_list[index+1]:
+            del word_list[index+1]
+
+    for z in word_list:
+        index = word_list.index(z)
+        print("z: ",z,"z+1: ",word_list[index+1])
+        if z == word_list[index+1]:
+            del word_list[index+1]
 
     print(word_list)
 
