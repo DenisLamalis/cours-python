@@ -9,16 +9,16 @@ def remove_consecutive_duplicates(words):
     #   ...
     # si non regarder word 2 + 3
     word_list = words.split(" ")
-    list_length = len(word_list)
-    print(list_length)
 
-    # for x in range(list_length):
-    #     print(x)
-    #     if word_list[x] == word_list[x]:
-    #         del word_list[1]
+    for x in range(len(word_list)):
+        print(word_list[x])
         
-    #         if word_list[x] == word_list[x]:
-    #             del word_list[1]
+        if word_list[x] == word_list[x]:
+            del word_list[x]
+            x = x - 1
+        
+        #     if word_list[x] == word_list[x]:
+        #         del word_list[x]
 
     print(word_list)
 
