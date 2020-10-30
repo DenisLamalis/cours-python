@@ -2,4 +2,10 @@
 
 
 def solution(stones):
-    # Do some magic
+
+    stones = stones.split()
+    print(stones)
+    return number
+
+
+print(solution('RGBRGBRGGB'))
