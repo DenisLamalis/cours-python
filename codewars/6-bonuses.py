@@ -6,7 +6,7 @@ def bonus(arr, s):
     total = sum(arr)
     print(total)
 
-    employee_1 = 
+    employee_1 = 0
 
     return arr, s
 
