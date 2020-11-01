@@ -2,11 +2,12 @@
 
 def bonus(arr, s):
 
-    employees = len(arr)
-    total = sum(arr)
-    print(total)
+    length = len(arr)
 
-    employee_1 = 0
+    for number in arr:
+        
+
+    coef = s / 
 
     return arr, s
 
