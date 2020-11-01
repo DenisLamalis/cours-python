@@ -2,7 +2,6 @@
 
 def bonus(arr, s):
 
-    length = len(arr)
     total = 0
     result = []
 
@@ -13,6 +12,8 @@ def bonus(arr, s):
 
     for number in arr:
         result.append(int(coef / number))
+
+    print(sum(result))
 
     return result
 
