@@ -1,4 +1,5 @@
 # Bonuses
+from math import *
 
 def bonus(arr, s):
 
@@ -11,9 +12,7 @@ def bonus(arr, s):
     coef = s / total
 
     for number in arr:
-        result.append(int(coef / number))
-
-    print(sum(result))
+        result.append(int(ceil(coef / number)))
 
     return result
 
