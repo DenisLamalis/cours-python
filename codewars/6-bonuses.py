@@ -3,13 +3,18 @@
 def bonus(arr, s):
 
     length = len(arr)
+    total = 0
+    result = []
 
     for number in arr:
-        
+        total = total + (1 / number)
 
-    coef = s / 
+    coef = s / total
 
-    return arr, s
+    for number in arr:
+        result.append(int(coef / number))
+
+    return result
 
 
 print(bonus([22, 3, 15], 18228))
