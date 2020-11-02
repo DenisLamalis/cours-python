@@ -12,7 +12,7 @@ def bonus(arr, s):
     coef = s / total
 
     for number in arr:
-        result.append(int(ceil(coef / number)))
+        result.append(int(floor(coef / number)))
 
     return result
 
