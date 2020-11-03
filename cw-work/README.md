@@ -1,4 +1,4 @@
-# Projet Codewars
+# Challenges Codewars
 
 Codewars : https://www.codewars.com/
 
