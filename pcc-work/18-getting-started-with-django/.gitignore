@@ -1,2 +1,4 @@
 ll_env/
 learning_log/
+db.sqlite3
+manage.py
