@@ -1,11 +1,13 @@
+from data import *
 import mysql.connector
 
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password=""
+  host = HOST,
+  user = USER,
+  password = PASSWORD
 )
 
 mycursor = mydb.cursor()
 
 mycursor.execute("CREATE DATABASE PureBeurre")
+
