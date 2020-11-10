@@ -2,3 +2,5 @@ ll_env/
 learning_log/
 db.sqlite3
 manage.py
+learning_logs/__pycache__/
+learning_logs/migrations/
