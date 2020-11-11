@@ -27,21 +27,7 @@ TABLES['marques'] = (
     "  `mar_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `mar_nom` varchar(150) NOT NULL,"
     "  `prodfab_id` int(11) NOT NULL,"
-    "  PRIMARY KEY (`mar_id`),"
-    "  CONSTRAINT `fk_prodfab_id` FOREIGN KEY (`prodfab_id`) "
-    "     REFERENCES `prodfab` (`prodfab_id`)"
-    ") ENGINE=InnoDB")
-
-TABLES['prodfab'] = (
-    "CREATE TABLE IF NOT EXISTS `prodfab` ("
-    "  `prodfab_id` int(11) NOT NULL AUTO_INCREMENT,"
-    "  `mar_id` int(11) NOT NULL,"
-    "  `prod_id` int(11) NOT NULL,"
-    "  PRIMARY KEY (`prodfab_id`),"
-    "  CONSTRAINT `fk_mar_id` FOREIGN KEY (`mar_id`) "
-    "     REFERENCES `marques` (`mar_id`),"
-    "  CONSTRAINT `fk_prod_id` FOREIGN KEY (`prod_id`) "
-    "     REFERENCES `produits` (`prod_id`)"
+    "  PRIMARY KEY (`mar_id`)"
     ") ENGINE=InnoDB")
 
 TABLES['produits'] = (
@@ -58,9 +44,7 @@ TABLES['produits'] = (
     "  CONSTRAINT `fk_cat_id` FOREIGN KEY (`cat_id`) "
     "     REFERENCES `categories` (`cat_id`),"
     "  CONSTRAINT `fk_nut_id` FOREIGN KEY (`nut_id`) "
-    "     REFERENCES `nutriscore` (`nut_id`),"
-    "  CONSTRAINT `fk_prodfab_id` FOREIGN KEY (`prodfab_id`) "
-    "     REFERENCES `prodfab` (`prodfab_id`)"
+    "     REFERENCES `nutriscore` (`nut_id`)"
     ") ENGINE=InnoDB")
 
 TABLES['sauvegardes'] = (
@@ -69,10 +53,21 @@ TABLES['sauvegardes'] = (
     "  `prod_id` int(11) NOT NULL,"
     "  `save_time` datetime NOT NULL,"
     "  PRIMARY KEY (`save_id`),"
-    "  CONSTRAINT `fk_prod_id` FOREIGN KEY (`prod_id`) "
+    "  CONSTRAINT `fk_saveprod_id` FOREIGN KEY (`prod_id`) "
     "     REFERENCES `produits` (`prod_id`)"
     ") ENGINE=InnoDB")
 
+TABLES['prodfab'] = (
+    "CREATE TABLE IF NOT EXISTS `prodfab` ("
+    "  `prodfab_id` int(11) NOT NULL AUTO_INCREMENT,"
+    "  `mar_id` int(11) NOT NULL,"
+    "  `prod_id` int(11) NOT NULL,"
+    "  PRIMARY KEY (`prodfab_id`),"
+    "  CONSTRAINT `fk_mar_id` FOREIGN KEY (`mar_id`) "
+    "     REFERENCES `marques` (`mar_id`),"
+    "  CONSTRAINT `fk_prodfabprod_id` FOREIGN KEY (`prod_id`) "
+    "     REFERENCES `produits` (`prod_id`)"
+    ") ENGINE=InnoDB")
 
 # Connection and cursor creation
 
