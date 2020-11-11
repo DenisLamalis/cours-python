@@ -9,21 +9,21 @@ DB_NAME = 'PureBeurre'
 
 TABLES = {}
 TABLES['categories'] = (
-    "CREATE TABLE `categories` ("
+    "CREATE TABLE IF NOT EXISTS `categories` ("
     "  `cat_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `cat_nom` varchar(100) NOT NULL,"
     "  PRIMARY KEY (`cat_id`)"
     ") ENGINE=InnoDB")
 
 TABLES['nutriscore'] = (
-    "CREATE TABLE `nutriscore` ("
+    "CREATE TABLE IF NOT EXISTS `nutriscore` ("
     "  `nut_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `nut_type` char(1) NOT NULL,"
     "  PRIMARY KEY (`nut_id`)"
     ") ENGINE=InnoDB")
 
 TABLES['marques'] = (
-    "CREATE TABLE `marques` ("
+    "CREATE TABLE IF NOT EXISTS `marques` ("
     "  `mar_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `mar_nom` varchar(150) NOT NULL,"
     "  `prodfab_id` int(11) NOT NULL,"
@@ -33,7 +33,7 @@ TABLES['marques'] = (
     ") ENGINE=InnoDB")
 
 TABLES['prodfab'] = (
-    "CREATE TABLE `prodfab` ("
+    "CREATE TABLE IF NOT EXISTS `prodfab` ("
     "  `prodfab_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `mar_id` int(11) NOT NULL,"
     "  `prod_id` int(11) NOT NULL,"
@@ -45,7 +45,7 @@ TABLES['prodfab'] = (
     ") ENGINE=InnoDB")
 
 TABLES['produits'] = (
-    "CREATE TABLE `produits` ("
+    "CREATE TABLE IF NOT EXISTS `produits` ("
     "  `prod_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `prod_nom` varchar(150) NOT NULL,"
     "  `prod_code` int NOT NULL,"
@@ -64,7 +64,7 @@ TABLES['produits'] = (
     ") ENGINE=InnoDB")
 
 TABLES['sauvegardes'] = (
-    "CREATE TABLE `sauvegardes` ("
+    "CREATE TABLE IF NOT EXISTS`sauvegardes` ("
     "  `save_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `prod_id` int(11) NOT NULL,"
     "  `save_time` datetime NOT NULL,"
