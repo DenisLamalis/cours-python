@@ -9,5 +9,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE DATABASE PureBeurre")
+mycursor.execute("CREATE DATABASE PureBeurre CHARACTER SET 'utf8'")
+
+
 
