@@ -1,7 +1,7 @@
 from data import *
 import mysql.connector
 from mysql.connector import errorcode
-from database import Database
+from db_settings import Database
 
 db_settings = Database()
 
