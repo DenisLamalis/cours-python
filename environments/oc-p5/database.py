@@ -97,5 +97,6 @@ class Database:
             "     REFERENCES `produits` (`prod_id`)"
             ") ENGINE=InnoDB")
 
-    def view_db():
-        pass
+    def view_db(self):
+        print(self.DB_NAME)
+
