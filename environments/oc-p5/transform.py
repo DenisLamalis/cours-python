@@ -20,7 +20,7 @@ for n in range(len(datas['products'])):
 
     for field in fields:
         print(datas['products'][n][field].lower())
-        datas_clean[field] = datas['products'][n][field].lower()
+        datas_clean[fields[n]] = datas['products'][n][field].lower()
 
 
 print(datas_clean)
