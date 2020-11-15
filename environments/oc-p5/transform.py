@@ -13,9 +13,14 @@ fields = (
     'stores' 
     )
 
+datas_clean = {}
+
 for n in range(len(datas['products'])):
     print("===========================")
 
     for field in fields:
         print(datas['products'][n][field].lower())
+        datas_clean(field) = datas['products'][n][field].lower()
 
+
+print(datas_clean)
