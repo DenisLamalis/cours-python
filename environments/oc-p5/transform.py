@@ -23,30 +23,28 @@ for n in range(len(off_data['products'])):
         if field != fields[1]:
             data_clean[off_data['products'][n][fields[1]].lower()][field] = off_data['products'][n][field].lower()
 
-for n in range(len(off_data['products'])):
-    print("========", n, off_data['products'][n]['product_name_fr'].lower(), "Code : ", off_data['products'][n]['code'].lower() )
-
-print("========", data_clean.keys())
-
-print("Nombre de produits en entrée :", len(off_data['products']))
-print("Nombre de produits en sortie :", len(data_clean))
+# Check input vs output
+if len(off_data['products']) == len(data_clean):
+    print("Nettoyage OK. Il y a", len(off_data['products']), "input pour", len(data_clean), "output.")
+    with open('my_products_fr.json', 'w') as fp:
+        json.dump(data_clean, fp)
+    print("Création du fichier : OK")
+else:
+    print("Nettoyage KO. Il y a", len(off_data['products']), "input pour", len(data_clean), "output.")
+    print("Création du fichier : KO")
 
 
 ###########
 
-# Save the data in en json file
-with open('my_products_fr.json', 'w') as fp:
-    json.dump(data_clean, fp)
+# # Save the data in en json file
+# with open('my_products_fr.json', 'w') as fp:
+#     json.dump(data_clean, fp)
 
 
 # Open the clean json file
-with open('my_products_fr.json', encoding='utf-8') as json_file:
-    my_products = json.load(json_file)
+# with open('my_products_fr.json', encoding='utf-8') as json_file:
+#     my_products = json.load(json_file)
 
-
-
-# print(my_products.keys())
-# print('Nombre de produits : ', len(my_products))
 
 # for n in range(len(my_products)):
 #     pass
