@@ -17,12 +17,23 @@ data_clean = {}
 tampon = {}
 
 for n in range(len(data['products'])):
-    print("===========================")
 
-    for field in fields:
-        print(field, data['products'][n][field].lower())
+    data_clean[data['products'][n]['product_name_fr'].lower()] = {}
 
-        tampon[field] = data['products'][n][field].lower()
+    data_clean[data['products'][n]['product_name_fr'].lower()]['code'] = data['products'][n]['code'].lower()
+    data_clean[data['products'][n]['product_name_fr'].lower()]['categories'] = data['products'][n]['categories'].lower()
+    data_clean[data['products'][n]['product_name_fr'].lower()]['nutriscrore_grade'] = data['products'][n]['nutriscore_grade'].lower()
+    data_clean[data['products'][n]['product_name_fr'].lower()]['url'] = data['products'][n]['url'].lower()
+    data_clean[data['products'][n]['product_name_fr'].lower()]['brands'] = data['products'][n]['brands'].lower()
+    data_clean[data['products'][n]['product_name_fr'].lower()]['stores'] = data['products'][n]['stores'].lower()
+
+    # for field in fields:
+    #     # print(field, data['products'][n][field].lower())
+
+    #     if field == 'product_name_fr':
+    #         tampon[data['products'][n][field].lower()] = {}
+    #     else:
+    #         pass
 
 
-print(tampon)
+print(data_clean)
