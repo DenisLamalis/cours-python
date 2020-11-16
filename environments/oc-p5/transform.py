@@ -1,7 +1,7 @@
 import json
 
 with open('off_products_fr.json', encoding='utf-8') as json_file:
-    data = json.load(json_file)
+    off_data = json.load(json_file)
 
 fields = (
     'product_name_fr', 
@@ -14,23 +14,33 @@ fields = (
     )
 
 data_clean = {}
-tampon = {}
 
-for n in range(len(data['products'])):
+for n in range(len(off_data['products'])):
 
-    data_clean[data['products'][n][fields[0]].lower()] = {}
-
-    # data_clean[data['products'][n]['product_name_fr'].lower()]['code'] = data['products'][n]['code'].lower()
-    # data_clean[data['products'][n]['product_name_fr'].lower()]['categories'] = data['products'][n]['categories'].lower()
-    # data_clean[data['products'][n]['product_name_fr'].lower()]['nutriscrore_grade'] = data['products'][n]['nutriscore_grade'].lower()
-    # data_clean[data['products'][n]['product_name_fr'].lower()]['url'] = data['products'][n]['url'].lower()
-    # data_clean[data['products'][n]['product_name_fr'].lower()]['brands'] = data['products'][n]['brands'].lower()
-    # data_clean[data['products'][n]['product_name_fr'].lower()]['stores'] = data['products'][n]['stores'].lower()
+    data_clean[off_data['products'][n][fields[0]].lower()] = {}
+    print('clé pour ', data_clean[off_data['products'][n][fields[0]].lower()], 'crée.')
 
     for field in fields:
         if field != fields[0]:
-            data_clean[data['products'][n][fields[0]].lower()][field] = data['products'][n][field].lower()
+            data_clean[off_data['products'][n][fields[0]].lower()][field] = off_data['products'][n][field].lower()
         
- 
-with open('products_fr', 'w') as fp:
+print("Nombre de produits en entrée :", len(off_data['products']))
+print("Nombre de produits en sortie :", len(data_clean))
+
+# Save the data in en json file
+with open('my_products_fr.json', 'w') as fp:
     json.dump(data_clean, fp)
+
+
+# Open the clean json file
+with open('my_products_fr.json', encoding='utf-8') as json_file:
+    my_products = json.load(json_file)
+
+
+
+print(my_products.keys())
+print('Nombre de produits : ', len(my_products))
+
+for n in range(len(my_products)):
+
+    pass
