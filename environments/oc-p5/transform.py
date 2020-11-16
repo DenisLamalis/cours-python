@@ -34,17 +34,18 @@ else:
     print("Création du fichier : KO")
 
 
-###########
-
-# # Save the data in en json file
-# with open('my_products_fr.json', 'w') as fp:
-#     json.dump(data_clean, fp)
-
 
 # Open the clean json file
-# with open('my_products_fr.json', encoding='utf-8') as json_file:
-#     my_products = json.load(json_file)
 
+with open('my_products_fr.json', encoding='utf-8') as json_file:
+    my_products = json.load(json_file)
 
-# for n in range(len(my_products)):
-#     pass
+print("================\n", my_products['3274080005003']['categories'])
+
+for code in my_products:
+    list_values = my_products[code]['categories'].split(",")
+    list_values = [x.strip(' ') for x in list_values]
+
+    my_products[code]['categories'] = list_values
+
+print("================\n", my_products['3274080005003']['categories'])
