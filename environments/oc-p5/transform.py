@@ -44,7 +44,7 @@ print("================\n", my_products['3274080005003']['categories'])
 
 for code in my_products:
     list_values = my_products[code]['categories'].split(",")
-    list_values = [x.strip(' ') for x in list_values]
+    list_values = [value.strip(' ') for value in list_values]
 
     my_products[code]['categories'] = list_values
 
