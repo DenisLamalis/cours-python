@@ -17,19 +17,22 @@ data_clean = {}
 
 for n in range(len(off_data['products'])):
 
-    data_clean[off_data['products'][n][fields[0]].lower()] = {}
+    data_clean[off_data['products'][n][fields[1]].lower()] = {}
 
     for field in fields:
-        if field != fields[0]:
-            data_clean[off_data['products'][n][fields[0]].lower()][field] = off_data['products'][n][field].lower()
+        if field != fields[1]:
+            data_clean[off_data['products'][n][fields[1]].lower()][field] = off_data['products'][n][field].lower()
 
 for n in range(len(off_data['products'])):
-    print("========", n, off_data['products'][n]['product_name_fr'].lower())
+    print("========", n, off_data['products'][n]['product_name_fr'].lower(), "Code : ", off_data['products'][n]['code'].lower() )
 
 print("========", data_clean.keys())
 
 print("Nombre de produits en entrée :", len(off_data['products']))
 print("Nombre de produits en sortie :", len(data_clean))
+
+
+###########
 
 # Save the data in en json file
 with open('my_products_fr.json', 'w') as fp:
