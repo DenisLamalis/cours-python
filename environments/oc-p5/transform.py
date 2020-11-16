@@ -1,7 +1,7 @@
 import json
 
 with open('off_products_fr.json', encoding='utf-8') as json_file:
-    datas = json.load(json_file)
+    data = json.load(json_file)
 
 fields = (
     'product_name_fr', 
@@ -13,14 +13,16 @@ fields = (
     'stores' 
     )
 
-datas_clean = {}
+data_clean = {}
+tampon = {}
 
-for n in range(len(datas['products'])):
+for n in range(len(data['products'])):
     print("===========================")
 
     for field in fields:
-        print(datas['products'][n][field].lower())
-        datas_clean[fields[n]] = datas['products'][n][field].lower()
+        print(field, data['products'][n][field].lower())
+
+        tampon[field] = data['products'][n][field].lower()
 
 
-print(datas_clean)
+print(tampon)
