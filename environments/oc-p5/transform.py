@@ -18,12 +18,16 @@ data_clean = {}
 for n in range(len(off_data['products'])):
 
     data_clean[off_data['products'][n][fields[0]].lower()] = {}
-    print('clé pour ', data_clean[off_data['products'][n][fields[0]].lower()], 'crée.')
 
     for field in fields:
         if field != fields[0]:
             data_clean[off_data['products'][n][fields[0]].lower()][field] = off_data['products'][n][field].lower()
-        
+
+for n in range(len(off_data['products'])):
+    print("========", n, off_data['products'][n]['product_name_fr'].lower())
+
+print("========", data_clean.keys())
+
 print("Nombre de produits en entrée :", len(off_data['products']))
 print("Nombre de produits en sortie :", len(data_clean))
 
@@ -38,9 +42,8 @@ with open('my_products_fr.json', encoding='utf-8') as json_file:
 
 
 
-print(my_products.keys())
-print('Nombre de produits : ', len(my_products))
+# print(my_products.keys())
+# print('Nombre de produits : ', len(my_products))
 
-for n in range(len(my_products)):
-
-    pass
+# for n in range(len(my_products)):
+#     pass
