@@ -20,14 +20,18 @@ cnx = mysql.connector.connect(
 
 mycursor = cnx.cursor()
 
-try:
-    add_nutriscore = ("INSERT INTO nutriscore (nut_id, nut_type) VALUES (NULL,%s)")
-    val = ('A')
+# mycursor.execute("SHOW TABLES")
+# tables = mycursor.fetchall()
+# print(tables)
 
-    mycursor.execute(add_nutriscore, (val, ))
-    cnx.commit()
+# try:
+#     add_nutriscore = ("INSERT INTO nutriscore (nut_id, nut_type) VALUES (NULL,%s)")
+#     val = ('A')
 
-except mysql.connector.Error as error:
-    print("Failed to insert into MySQL table {}".format(error))
+#     mycursor.execute(add_nutriscore, (val, ))
+#     cnx.commit()
 
-print(mycursor.rowcount, "record inserted.")
+# except mysql.connector.Error as error:
+#     print("Failed to insert into MySQL table {}".format(error))
+
+# print(mycursor.rowcount, "record inserted.")
