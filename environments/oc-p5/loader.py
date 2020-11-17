@@ -17,7 +17,7 @@ class Loader:
             db_settings = Database()
             database_name = db_settings.DB_NAME
 
-            connection = mysql.connector.connect(
+            self.connection = mysql.connector.connect(
                 host = HOST,
                 user = USER,
                 password = PASSWORD,
@@ -31,11 +31,11 @@ class Loader:
         except mysql.connector.Error as error:
             print("Failed to insert into MySQL table {}".format(error))
 
-        # finally:
-        #     if (connection.is_connected()):
-        #         mycursor.close()
-        #         connection.close()
-        #         print("MySQL connection is closed")
+    def db_disconnect(self):
+            if (connection.is_connected()):
+                mycursor.close()
+                connection.close()
+                print("MySQL connection is closed")
         
 
     def open_json(self):
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     loader = Loader()
 
 # loader.open_json()
-loader.db_connect()
+loader.db_disconnect()
 
 
 # try:
