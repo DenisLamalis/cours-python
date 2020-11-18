@@ -43,7 +43,7 @@ class Loader:
         
 
     def open_json(self):
-        with open('my_products_fr.json', encoding='utf-8') as json_file:
+        with open('transform_products.json', encoding='utf-8') as json_file:
             self.my_products = json.load(json_file)
 
     def load_data(self):
@@ -53,22 +53,41 @@ class Loader:
 
         print(product_test)
 
+        for n in range(len(product_test['categories'])):
+            if self.tab_categorie(product_test['categories'][n]) == False:                
+                add_categorie = (f"INSERT INTO categories SET cat_nom='{product_test['categories'][n]}'")
+
+                self.mycursor.execute(add_categorie)
+                self.connection.commit()
+            else:
+                pass
+
+
+    def tab_categorie(self, value):
+        """ """
+        id_target = 'cat_id'
+        table_target = 'categories'
+        column_target = 'cat_nom'
+        product_target = value
+
+        result = self.check_product(id_target, table_target, column_target, product_target)
+        return result
+
+
     def check_product(self, id_target, table_target, column_target, product_target):
-        
+        """ I Check if a value is in a table, if yes I return its id """
         query = (f"SELECT {id_target} FROM {table_target} WHERE {column_target} LIKE '{product_target}'")
         
         self.mycursor.execute(query)
+        result = self.mycursor.fetchall()
 
-        output = self.mycursor.fetchall()
-
-        if len(output) < 1:
+        if len(result) < 1:
             return False
-        elif len(output) > 1:
+        elif len(result) > 1:
             return print("ca va pas")
         else:
-            for id in chain.from_iterable(output):
-                id = id
-            return id
+            for id in chain.from_iterable(result):
+                return id
 
 
     def load_nutriscore(self):
@@ -100,7 +119,7 @@ if __name__ == "__main__":
     loader = Loader()
 
 # loader.open_json()
-loader.check_product('nut_id', 'nutriscore', 'nut_type', 'J')
+loader.tab_categorie('boissons')
 
 
 # try:
