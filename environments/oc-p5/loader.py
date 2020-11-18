@@ -5,6 +5,8 @@ from data import *
 from mysql.connector import errorcode
 from db_settings import Database
 
+from itertools import chain
+
 
 class Loader:
 
@@ -52,17 +54,21 @@ class Loader:
         print(product_test)
 
     def check_product(self, id_target, table_target, column_target, product_target):
+        
         query = (f"SELECT {id_target} FROM {table_target} WHERE {column_target} LIKE '{product_target}'")
-        print(query)
+        
         self.mycursor.execute(query)
-        # for result in self.mycursor:
-        #     print(result)
-        reponse = self.mycursor.fetchall()
-        # print(type(reponse))
-        if len(reponse) < 1:
-            print("rien")
+
+        output = self.mycursor.fetchall()
+
+        if len(output) < 1:
+            return False
+        elif len(output) > 1:
+            return print("ca va pas")
         else:
-            print(f"la reposne est {reponse[0]}")
+            for id in chain.from_iterable(output):
+                id = id
+            return id
 
 
     def load_nutriscore(self):
@@ -94,7 +100,7 @@ if __name__ == "__main__":
     loader = Loader()
 
 # loader.open_json()
-loader.check_product('nut_id', 'nutriscore', 'nut_type', 'A')
+loader.check_product('nut_id', 'nutriscore', 'nut_type', 'J')
 
 
 # try:
