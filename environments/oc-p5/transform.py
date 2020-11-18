@@ -49,3 +49,6 @@ for code in my_products:
     my_products[code]['categories'] = list_values
 
 print("================\n", my_products['3274080005003']['categories'])
+
+with open('transform_products.json', 'w') as fp:
+    json.dump(my_products, fp)
