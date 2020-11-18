@@ -119,7 +119,7 @@ if __name__ == "__main__":
     loader = Loader()
 
 # loader.open_json()
-loader.tab_categorie('boissons')
+print(loader.tab_categorie('boissons'))
 
 
 # try:
