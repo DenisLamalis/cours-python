@@ -11,6 +11,7 @@ class Loader:
     def __init__(self):
         self.db_settings = Database()
         self.db_connect()
+        self.open_json()
 
     def db_connect(self):
 
@@ -41,12 +42,27 @@ class Loader:
 
     def open_json(self):
         with open('my_products_fr.json', encoding='utf-8') as json_file:
-            my_products = json.load(json_file)
-
-        print(my_products)
+            self.my_products = json.load(json_file)
 
     def load_data(self):
-        pass
+
+        first_key = list(self.my_products.keys())[0]
+        product_test = self.my_products[first_key]
+
+        print(product_test)
+
+    def check_product(self, id_target, table_target, column_target, product_target):
+        query = (f"SELECT {id_target} FROM {table_target} WHERE {column_target} LIKE '{product_target}'")
+        print(query)
+        self.mycursor.execute(query)
+        # for result in self.mycursor:
+        #     print(result)
+        reponse = self.mycursor.fetchall()
+        # print(type(reponse))
+        if len(reponse) < 1:
+            print("rien")
+        else:
+            print(f"la reposne est {reponse[0]}")
 
 
     def load_nutriscore(self):
@@ -78,7 +94,7 @@ if __name__ == "__main__":
     loader = Loader()
 
 # loader.open_json()
-loader.load_nutriscore()
+loader.check_product('nut_id', 'nutriscore', 'nut_type', 'A')
 
 
 # try:
