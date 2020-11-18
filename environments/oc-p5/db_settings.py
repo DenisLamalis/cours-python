@@ -37,16 +37,13 @@ class Database:
 
         self.TABLES['produits'] = (
             "CREATE TABLE IF NOT EXISTS `produits` ("
-            "  `prod_id` int(11) NOT NULL AUTO_INCREMENT,"
+            "  `prod_id` bigint(13) NOT NULL AUTO_INCREMENT,"
             "  `prod_nom` varchar(150) NOT NULL,"
             "  `prod_code` int NOT NULL,"
             "  `prod_url` varchar(150) NOT NULL,"
             "  `prod_store` varchar(150) NULL,"
-            "  `cat_id` int(11) NOT NULL,"
             "  `nut_id` int(11) NOT NULL,"
             "  PRIMARY KEY (`prod_id`),"
-            "  CONSTRAINT `fk_prodcat_id` FOREIGN KEY (`cat_id`) "
-            "     REFERENCES `categories` (`cat_id`),"
             "  CONSTRAINT `fk_nut_id` FOREIGN KEY (`nut_id`) "
             "     REFERENCES `nutriscore` (`nut_id`)"
             ") ENGINE=InnoDB")
