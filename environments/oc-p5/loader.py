@@ -9,24 +9,25 @@ from db_settings import Database
 class Loader:
 
     def __init__(self):
-        pass
+        self.db_settings = Database()
+        self.db_connect()
 
     def db_connect(self):
 
         try:
-            db_settings = Database()
-            database_name = db_settings.DB_NAME
+            self.db_settings = Database()
+            database_name = self.db_settings.DB_NAME
 
             self.connection = mysql.connector.connect(
                 host = HOST,
                 user = USER,
                 password = PASSWORD,
-                database = db_settings.DB_NAME)
+                database = database_name)
 
-            mycursor = connection.cursor()
+            self.mycursor = self.connection.cursor()
 
-            if (connection.is_connected()):
-                print("Connection : OK")
+            if (self.connection.is_connected()):
+                print(f"Connection à la base {database_name} : OK")
 
         except mysql.connector.Error as error:
             print("Failed to insert into MySQL table {}".format(error))
@@ -48,11 +49,36 @@ class Loader:
         pass
 
 
+    def load_nutriscore(self):
+
+        try:
+            add_nutriscore = ("INSERT INTO nutriscore (nut_id, nut_type) VALUES (%s,%s)")
+            values = (1, 'A')
+            self.mycursor.execute(add_nutriscore, values)
+            values = (2, 'B')
+            self.mycursor.execute(add_nutriscore, values)      
+            values = (3, 'C')
+            self.mycursor.execute(add_nutriscore, values) 
+            values = (4, 'D')
+            self.mycursor.execute(add_nutriscore, values) 
+            values = (5, 'E')
+            self.mycursor.execute(add_nutriscore, values) 
+            
+            self.connection.commit()
+
+            print("Les différents Nutriscore ont été chargés dans la base.")
+
+        except mysql.connector.Error as error:
+            print("Erreur lors du chargement : {}".format(error))
+
+
+# ============================================================
+
 if __name__ == "__main__":
     loader = Loader()
 
 # loader.open_json()
-loader.db_disconnect()
+loader.load_nutriscore()
 
 
 # try:
