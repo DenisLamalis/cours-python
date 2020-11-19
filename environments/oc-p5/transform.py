@@ -40,15 +40,25 @@ else:
 with open('my_products_fr.json', encoding='utf-8') as json_file:
     my_products = json.load(json_file)
 
-print("================\n", my_products['3274080005003']['categories'])
+print("================\n", my_products['3274080005003'])
 
 for code in my_products:
+    # Categories
     list_values = my_products[code]['categories'].split(",")
     list_values = [value.strip(' ') for value in list_values]
-
     my_products[code]['categories'] = list_values
 
-print("================\n", my_products['3274080005003']['categories'])
+    # Brands
+    list_values = my_products[code]['brands'].split(",")
+    list_values = [value.strip(' ') for value in list_values]
+    my_products[code]['brands'] = list_values
+
+    # Stores
+    list_values = my_products[code]['stores'].split(",")
+    list_values = [value.strip(' ') for value in list_values]
+    my_products[code]['stores'] = list_values
+
+print("================\n", my_products['3274080005003'])
 
 with open('transform_products.json', 'w') as fp:
     json.dump(my_products, fp)
