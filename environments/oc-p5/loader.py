@@ -47,11 +47,25 @@ class Loader:
             self.my_products = json.load(json_file)
 
     def load_data(self):
-
+        """ """
         first_key = list(self.my_products.keys())[0]
         product_test = self.my_products[first_key]
-
         print(product_test)
+
+        if self.tab_produits(first_key) == False:
+           nut_id = self.check_product('nut_id', 'nutriscore', 'nut_type', product_test['nutriscore_grade'][0])
+           
+           print(f"l'ID du nutriscore {product_test['nutriscore_grade'][0]} est {nut_id}")
+           
+           query = (f"INSERT INTO produits SET prod_id='{first_key}', prod_nom='{product_test['product_name_fr']}', prod_url='{product_test['url']}', nut_id='{nut_id}'")
+           
+           print(query)
+           
+           self.insert(query)
+        else:
+            print(f"Le produit : {product_test['product_name_fr']}, avec le code : {first_key}, existe déjà")
+            return
+
 
         for n in range(len(product_test['categories'])):
             if self.tab_categorie(product_test['categories'][n]) == False:                
@@ -73,6 +87,16 @@ class Loader:
         result = self.check_product(id_target, table_target, column_target, product_target)
         return result
 
+    def tab_produits(self, value):
+        """ """
+        id_target = 'prod_id'
+        table_target = 'produits'
+        column_target = 'prod_id'
+        product_target = value
+
+        result = self.check_product(id_target, table_target, column_target, product_target)
+        return result
+
 
     def check_product(self, id_target, table_target, column_target, product_target):
         """ I Check if a value is in a table, if yes I return its id """
@@ -88,6 +112,11 @@ class Loader:
         else:
             for id in chain.from_iterable(result):
                 return id
+
+    def insert(self, query):
+        self.mycursor.execute(query)
+        self.connection.commit()
+
 
 
     def load_nutriscore(self):
@@ -119,7 +148,7 @@ if __name__ == "__main__":
     loader = Loader()
 
 # loader.open_json()
-print(loader.tab_categorie('boissons'))
+print(loader.load_data())
 
 
 # try:
