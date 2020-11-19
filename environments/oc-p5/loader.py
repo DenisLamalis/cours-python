@@ -66,24 +66,36 @@ class Loader:
             if self.tab_categorie(product_test['categories'][n]) == False:                
                 add_categorie = (f"INSERT INTO categories SET cat_nom='{product_test['categories'][n]}'")
                 self.insert(add_categorie)
-            else:
-                pass
+
+            cat_id = self.tab_categorie(product_test['categories'][n])
+            check = self.search_id(f"SELECT * FROM prodcat WHERE cat_id='{cat_id}' AND prod_id='{first_key}' ")
+            if not(check):     
+                add_prodcat = (f"INSERT INTO prodcat SET cat_id='{cat_id}', prod_id='{first_key}' ")
+                self.insert(add_prodcat)
 
         # Marques
         for n in range(len(product_test['brands'])):
             if self.tab_marque(product_test['brands'][n]) == False:                
                 add_marque = (f"INSERT INTO marques SET marq_nom='{product_test['brands'][n]}'")
                 self.insert(add_marque)
-            else:
-                pass
+
+            marq_id = self.tab_marque(product_test['brands'][n])
+            check = self.search_id(f"SELECT * FROM prodmarq WHERE marq_id='{marq_id}' AND prod_id='{first_key}' ")
+            if not(check):     
+                add_prodmarq = (f"INSERT INTO prodmarq SET marq_id='{marq_id}', prod_id='{first_key}' ")
+                self.insert(add_prodmarq)
 
         # Shops
         for n in range(len(product_test['stores'])):
             if self.tab_shop(product_test['stores'][n]) == False:                
                 add_shop = (f"INSERT INTO shops SET shop_nom='{product_test['stores'][n]}'")
                 self.insert(add_shop)
-            else:
-                pass
+
+            shop_id = self.tab_shop(product_test['stores'][n])
+            check = self.search_id(f"SELECT * FROM prodshop WHERE shop_id='{shop_id}' AND prod_id='{first_key}' ")
+            if not(check):     
+                add_prodshop = (f"INSERT INTO prodshop SET shop_id='{shop_id}', prod_id='{first_key}' ")
+                self.insert(add_prodshop)
 
 
     def tab_categorie(self, value):
@@ -126,6 +138,16 @@ class Loader:
         result = self.check_product(id_target, table_target, column_target, product_target)
         return result
 
+    def tab_prodcat(self, value):
+        """ """
+        id_target = 'prod_id'
+        table_target = 'prodcat'
+        column_target = 'prod_id'
+        product_target = value
+
+        result = self.check_product(id_target, table_target, column_target, product_target)
+        return result
+
 
     def check_product(self, id_target, table_target, column_target, product_target):
         """ I Check if a value is in a table, if yes I return its id """
@@ -145,6 +167,12 @@ class Loader:
     def insert(self, query):
         self.mycursor.execute(query)
         self.connection.commit()
+
+    def search_id(self, query):
+        self.mycursor.execute(query)
+        rows = self.mycursor.fetchall()
+        return rows
+
 
 
 
