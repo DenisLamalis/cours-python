@@ -10,7 +10,7 @@ class Database:
         self.TABLES['categories'] = (
             "CREATE TABLE IF NOT EXISTS `categories` ("
             "  `cat_id` int(11) NOT NULL AUTO_INCREMENT,"
-            "  `cat_nom` varchar(100) NOT NULL,"
+            "  `cat_nom` varchar(150) NOT NULL,"
             "  PRIMARY KEY (`cat_id`)"
             ") ENGINE=InnoDB")
 
@@ -38,7 +38,7 @@ class Database:
         self.TABLES['produits'] = (
             "CREATE TABLE IF NOT EXISTS `produits` ("
             "  `prod_id` bigint(13) NOT NULL AUTO_INCREMENT,"
-            "  `prod_nom` varchar(150) NOT NULL,"
+            "  `prod_nom` varchar(250) NOT NULL,"
             "  `prod_url` varchar(150) NOT NULL,"
             "  `prod_store` varchar(150) NULL,"
             "  `nut_id` int(11) NOT NULL,"
