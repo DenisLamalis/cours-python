@@ -52,27 +52,28 @@ class Loader:
         product_test = self.my_products[first_key]
         print(product_test)
 
+        # Produits
         if self.tab_produits(first_key) == False:
-           nut_id = self.check_product('nut_id', 'nutriscore', 'nut_type', product_test['nutriscore_grade'][0])
+           nut_id = self.check_product('nut_id', 'nutriscore', 'nut_type', product_test['nutriscore_grade'][0])          
+           add_product = (f"INSERT INTO produits SET prod_id='{first_key}', prod_nom='{product_test['product_name_fr']}', prod_url='{product_test['url']}', nut_id='{nut_id}'")
            
-           print(f"l'ID du nutriscore {product_test['nutriscore_grade'][0]} est {nut_id}")
-           
-           query = (f"INSERT INTO produits SET prod_id='{first_key}', prod_nom='{product_test['product_name_fr']}', prod_url='{product_test['url']}', nut_id='{nut_id}'")
-           
-           print(query)
-           
-           self.insert(query)
+           self.insert(add_product)
         else:
             print(f"Le produit : {product_test['product_name_fr']}, avec le code : {first_key}, existe déjà")
-            return
 
-
+        # Categories
         for n in range(len(product_test['categories'])):
             if self.tab_categorie(product_test['categories'][n]) == False:                
                 add_categorie = (f"INSERT INTO categories SET cat_nom='{product_test['categories'][n]}'")
+                self.insert(add_categorie)
+            else:
+                pass
 
-                self.mycursor.execute(add_categorie)
-                self.connection.commit()
+        # Marques
+        for n in range(len(product_test['brands'])):
+            if self.tab_marque(product_test['brands'][n]) == False:                
+                add_marque = (f"INSERT INTO marques SET marq_nom='{product_test['brands'][n]}'")
+                self.insert(add_marque)
             else:
                 pass
 
@@ -86,6 +87,17 @@ class Loader:
 
         result = self.check_product(id_target, table_target, column_target, product_target)
         return result
+
+    def tab_marque(self, value):
+        """ """
+        id_target = 'marq_id'
+        table_target = 'marques'
+        column_target = 'marq_nom'
+        product_target = value
+
+        result = self.check_product(id_target, table_target, column_target, product_target)
+        return result
+
 
     def tab_produits(self, value):
         """ """
