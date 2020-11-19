@@ -41,61 +41,63 @@ class Loader:
                 connection.close()
                 print("MySQL connection is closed")
         
-
     def open_json(self):
         with open('transform_products.json', encoding='utf-8') as json_file:
             self.my_products = json.load(json_file)
 
     def load_data(self):
         """ """
-        first_key = list(self.my_products.keys())[0]
-        product_test = self.my_products[first_key]
-        print(product_test)
+        print(list(self.my_products.keys()))
 
-        # Produits
-        if self.tab_produits(first_key) == False:
-           nut_id = self.check_product('nut_id', 'nutriscore', 'nut_type', product_test['nutriscore_grade'][0])          
-           add_product = (f"INSERT INTO produits SET prod_id='{first_key}', prod_nom='{product_test['product_name_fr']}', prod_url='{product_test['url']}', nut_id='{nut_id}'")
-           
-           self.insert(add_product)
-        else:
-            print(f"Le produit : {product_test['product_name_fr']}, avec le code : {first_key}, existe déjà")
+        for prod_key in list(self.my_products.keys()):
+            # prod_key = list(self.my_products.keys())[3]
+            prod_to_load = self.my_products[prod_key]
+            # print(prod_to_load)
 
-        # Categories
-        for n in range(len(product_test['categories'])):
-            if self.tab_categorie(product_test['categories'][n]) == False:                
-                add_categorie = (f"INSERT INTO categories SET cat_nom='{product_test['categories'][n]}'")
-                self.insert(add_categorie)
+            # Produits
+            if self.tab_produits(prod_key) == False:
+                nut_id = self.check_product('nut_id', 'nutriscore', 'nut_type', prod_to_load['nutriscore_grade'][0])          
+                add_product = (f"INSERT INTO produits SET prod_id='{prod_key}', prod_nom='{prod_to_load['product_name_fr']}', prod_url='{prod_to_load['url']}', nut_id='{nut_id}'")
+            
+                self.insert(add_product)
+            else:
+                print(f"Le produit : {prod_to_load['product_name_fr']}, avec le code : {prod_key}, existe déjà")
 
-            cat_id = self.tab_categorie(product_test['categories'][n])
-            check = self.search_id(f"SELECT * FROM prodcat WHERE cat_id='{cat_id}' AND prod_id='{first_key}' ")
-            if not(check):     
-                add_prodcat = (f"INSERT INTO prodcat SET cat_id='{cat_id}', prod_id='{first_key}' ")
-                self.insert(add_prodcat)
+            # Categories
+            for n in range(len(prod_to_load['categories'])):
+                if self.tab_categorie(prod_to_load['categories'][n]) == False:                
+                    add_categorie = (f"INSERT INTO categories SET cat_nom='{prod_to_load['categories'][n]}'")
+                    self.insert(add_categorie)
 
-        # Marques
-        for n in range(len(product_test['brands'])):
-            if self.tab_marque(product_test['brands'][n]) == False:                
-                add_marque = (f"INSERT INTO marques SET marq_nom='{product_test['brands'][n]}'")
-                self.insert(add_marque)
+                cat_id = self.tab_categorie(prod_to_load['categories'][n])
+                check = self.search_id(f"SELECT * FROM prodcat WHERE cat_id='{cat_id}' AND prod_id='{prod_key}' ")
+                if not(check):     
+                    add_prodcat = (f"INSERT INTO prodcat SET cat_id='{cat_id}', prod_id='{prod_key}' ")
+                    self.insert(add_prodcat)
 
-            marq_id = self.tab_marque(product_test['brands'][n])
-            check = self.search_id(f"SELECT * FROM prodmarq WHERE marq_id='{marq_id}' AND prod_id='{first_key}' ")
-            if not(check):     
-                add_prodmarq = (f"INSERT INTO prodmarq SET marq_id='{marq_id}', prod_id='{first_key}' ")
-                self.insert(add_prodmarq)
+            # Marques
+            for n in range(len(prod_to_load['brands'])):
+                if self.tab_marque(prod_to_load['brands'][n]) == False:                
+                    add_marque = (f"INSERT INTO marques SET marq_nom='{prod_to_load['brands'][n]}'")
+                    self.insert(add_marque)
 
-        # Shops
-        for n in range(len(product_test['stores'])):
-            if self.tab_shop(product_test['stores'][n]) == False:                
-                add_shop = (f"INSERT INTO shops SET shop_nom='{product_test['stores'][n]}'")
-                self.insert(add_shop)
+                marq_id = self.tab_marque(prod_to_load['brands'][n])
+                check = self.search_id(f"SELECT * FROM prodmarq WHERE marq_id='{marq_id}' AND prod_id='{prod_key}' ")
+                if not(check):     
+                    add_prodmarq = (f"INSERT INTO prodmarq SET marq_id='{marq_id}', prod_id='{prod_key}' ")
+                    self.insert(add_prodmarq)
 
-            shop_id = self.tab_shop(product_test['stores'][n])
-            check = self.search_id(f"SELECT * FROM prodshop WHERE shop_id='{shop_id}' AND prod_id='{first_key}' ")
-            if not(check):     
-                add_prodshop = (f"INSERT INTO prodshop SET shop_id='{shop_id}', prod_id='{first_key}' ")
-                self.insert(add_prodshop)
+            # Shops
+            for n in range(len(prod_to_load['stores'])):
+                if self.tab_shop(prod_to_load['stores'][n]) == False:                
+                    add_shop = (f"INSERT INTO shops SET shop_nom='{prod_to_load['stores'][n]}'")
+                    self.insert(add_shop)
+
+                shop_id = self.tab_shop(prod_to_load['stores'][n])
+                check = self.search_id(f"SELECT * FROM prodshop WHERE shop_id='{shop_id}' AND prod_id='{prod_key}' ")
+                if not(check):     
+                    add_prodshop = (f"INSERT INTO prodshop SET shop_id='{shop_id}', prod_id='{prod_key}' ")
+                    self.insert(add_prodshop)
 
 
     def tab_categorie(self, value):
@@ -138,15 +140,15 @@ class Loader:
         result = self.check_product(id_target, table_target, column_target, product_target)
         return result
 
-    def tab_prodcat(self, value):
-        """ """
-        id_target = 'prod_id'
-        table_target = 'prodcat'
-        column_target = 'prod_id'
-        product_target = value
+    # def tab_prodcat(self, value):
+    #     """ """
+    #     id_target = 'prod_id'
+    #     table_target = 'prodcat'
+    #     column_target = 'prod_id'
+    #     product_target = value
 
-        result = self.check_product(id_target, table_target, column_target, product_target)
-        return result
+    #     result = self.check_product(id_target, table_target, column_target, product_target)
+    #     return result
 
 
     def check_product(self, id_target, table_target, column_target, product_target):
