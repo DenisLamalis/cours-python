@@ -48,6 +48,9 @@ for code in my_products:
     list_values = [value.strip(' ') for value in list_values]
     my_products[code]['categories'] = list_values
 
+    for n in range(len(my_products[code]['categories'])):
+        my_products[code]['categories'][n] = my_products[code]['categories'][n].replace("'", " ")
+
     # Brands
     list_values = my_products[code]['brands'].split(",")
     list_values = [value.strip(' ') for value in list_values]
