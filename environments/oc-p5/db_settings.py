@@ -14,8 +14,8 @@ class Database:
             "  PRIMARY KEY (`cat_id`)"
             ") ENGINE=InnoDB")
 
-        self.TABLES['shop'] = (
-            "CREATE TABLE IF NOT EXISTS `shop` ("
+        self.TABLES['shops'] = (
+            "CREATE TABLE IF NOT EXISTS `shops` ("
             "  `shop_id` int(11) NOT NULL AUTO_INCREMENT,"
             "  `shop_nom` varchar(150) NOT NULL,"
             "  PRIMARY KEY (`shop_id`)"
@@ -76,7 +76,7 @@ class Database:
             "  `prod_id` bigint(13) NOT NULL,"
             "  PRIMARY KEY (`prodshop_id`),"
             "  CONSTRAINT `fk_shop_id` FOREIGN KEY (`shop_id`) "
-            "     REFERENCES `shop` (`shop_id`),"
+            "     REFERENCES `shops` (`shop_id`),"
             "  CONSTRAINT `fk_prodshopprod_id` FOREIGN KEY (`prod_id`) "
             "     REFERENCES `produits` (`prod_id`)"
             ") ENGINE=InnoDB")
