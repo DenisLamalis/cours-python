@@ -77,6 +77,14 @@ class Loader:
             else:
                 pass
 
+        # Shops
+        for n in range(len(product_test['stores'])):
+            if self.tab_shop(product_test['stores'][n]) == False:                
+                add_shop = (f"INSERT INTO shops SET shop_nom='{product_test['stores'][n]}'")
+                self.insert(add_shop)
+            else:
+                pass
+
 
     def tab_categorie(self, value):
         """ """
@@ -98,6 +106,15 @@ class Loader:
         result = self.check_product(id_target, table_target, column_target, product_target)
         return result
 
+    def tab_shop(self, value):
+        """ """
+        id_target = 'shop_id'
+        table_target = 'shops'
+        column_target = 'shop_nom'
+        product_target = value
+
+        result = self.check_product(id_target, table_target, column_target, product_target)
+        return result
 
     def tab_produits(self, value):
         """ """
