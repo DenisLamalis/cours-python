@@ -2,13 +2,14 @@ import json
 
 from itertools import chain
 from database import Database
-from tables import Tables
+from tables import Tables, Categories
 
 class Loader:
 
     def __init__(self):
         """ """
         self.tables = Tables()
+        self.cat = Categories()
         self.database = Database()
         self.mycursor = self.database.connection()
         self.open_json()
@@ -74,12 +75,12 @@ class Loader:
 
     def tab_categorie(self, value):
         """ """
-        id_target = 'cat_id'
-        table_target = 'categories'
-        column_target = 'cat_nom'
-        product_target = value
+        # id_target = 'cat_id'
+        # table_target = 'categories'
+        # column_target = 'cat_nom'
+        # product_target = value
 
-        result = self.check_product(id_target, table_target, column_target, product_target)
+        result = self.check_product(self.cat.id_target, self.cat.table_target, self.cat.column_target, value)
 
         return result
 
