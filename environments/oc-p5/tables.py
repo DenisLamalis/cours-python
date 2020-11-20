@@ -92,16 +92,13 @@ class Tables:
             "     REFERENCES `produits` (`prod_id`)"
             ") ENGINE=InnoDB")
 
-    def categories(self, value):
-        """ """
-        id_target = 'cat_id'
-        table_target = 'categories'
-        column_target = 'cat_nom'
-        product_target = value
+class Categories:
+    """ """
 
-        # query = f"'{id_target}', '{table_target}', '{column_target}', '{product_target}'"
-
-        return id_target, table_target, column_target, product_target
+    def __init__(self):
+        self.id_target = 'cat_id'
+        self.table_target = 'categories'
+        self.column_target = 'cat_nom'
 
 
 
