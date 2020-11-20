@@ -92,7 +92,7 @@ class Tables:
             "     REFERENCES `produits` (`prod_id`)"
             ") ENGINE=InnoDB")
 
-class Categories:
+class TabCategories:
     """ """
 
     def __init__(self):
