@@ -1,5 +1,5 @@
 __pycache__/
-data.py
+config.py
 p5_env/
 .vscode/
 *.json
