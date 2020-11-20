@@ -1,67 +1,68 @@
 import json
 
-with open('off_products_fr.json', encoding='utf-8') as json_file:
-    off_data = json.load(json_file)
+class Transform:
 
-fields = (
-    'product_name_fr', 
-    'code', 
-    'categories', 
-    'nutriscore_grade', 
-    'url', 
-    'brands', 
-    'stores' 
-    )
+    def __init__(self):
+        """ """
+        self.fields = (
+            'product_name_fr', 
+            'code', 
+            'categories', 
+            'nutriscore_grade', 
+            'url', 
+            'brands', 
+            'stores' 
+            )
+        self.data_clean = {}
 
-data_clean = {}
+        self.open_json()
+        self.transform_basic()
 
-for n in range(len(off_data['products'])):
-
-    data_clean[off_data['products'][n][fields[1]].lower()] = {}
-
-    for field in fields:
-        if field != fields[1]:
-            data_clean[off_data['products'][n][fields[1]].lower()][field] = off_data['products'][n][field].lower()
-
-# Check input vs output
-if len(off_data['products']) == len(data_clean):
-    print("Nettoyage OK. Il y a", len(off_data['products']), "input pour", len(data_clean), "output.")
-    with open('my_products_fr.json', 'w') as fp:
-        json.dump(data_clean, fp)
-    print("Création du fichier : OK")
-else:
-    print("Nettoyage KO. Il y a", len(off_data['products']), "input pour", len(data_clean), "output.")
-    print("Création du fichier : KO")
+    def open_json(self):
+        """ """
+        with open('off_data_extract.json', encoding='utf-8') as json_file:
+            self.data_extract = json.load(json_file)
 
 
+    def transform_basic(self):
+        """ """
+        for n in range(len(self.data_extract['products'])):
 
-# Open the clean json file
+            self.data_clean[self.data_extract['products'][n][self.fields[1]].lower()] = {}
 
-with open('my_products_fr.json', encoding='utf-8') as json_file:
-    my_products = json.load(json_file)
+            for field in self.fields:
+                if field != self.fields[1]:
+                    self.data_clean[self.data_extract['products'][n][self.fields[1]].lower()][field] = self.data_extract['products'][n][field].lower()
 
-print("================\n", my_products['3274080005003'])
+        self.transform_field(self.data_clean)
 
-for code in my_products:
-    # Categories
-    list_values = my_products[code]['categories'].split(",")
-    list_values = [value.strip(' ') for value in list_values]
-    my_products[code]['categories'] = list_values
 
-    for n in range(len(my_products[code]['categories'])):
-        my_products[code]['categories'][n] = my_products[code]['categories'][n].replace("'", " ")
+    def transform_field(self, data_clean):
 
-    # Brands
-    list_values = my_products[code]['brands'].split(",")
-    list_values = [value.strip(' ') for value in list_values]
-    my_products[code]['brands'] = list_values
+        for code in data_clean:
+            # Categories
+            list_values = data_clean[code]['categories'].split(",")
+            list_values = [value.strip(' ') for value in list_values]
+            data_clean[code]['categories'] = list_values
 
-    # Stores
-    list_values = my_products[code]['stores'].split(",")
-    list_values = [value.strip(' ') for value in list_values]
-    my_products[code]['stores'] = list_values
+            for n in range(len(data_clean[code]['categories'])):
+                data_clean[code]['categories'][n] = data_clean[code]['categories'][n].replace("'", " ")
 
-print("================\n", my_products['3274080005003'])
+            # Brands
+            list_values = data_clean[code]['brands'].split(",")
+            list_values = [value.strip(' ') for value in list_values]
+            data_clean[code]['brands'] = list_values
 
-with open('transform_products.json', 'w') as fp:
-    json.dump(my_products, fp)
+            # Stores
+            list_values = data_clean[code]['stores'].split(",")
+            list_values = [value.strip(' ') for value in list_values]
+            data_clean[code]['stores'] = list_values
+
+        self.create_json(data_clean)
+
+    def create_json(self, data_clean):
+        with open('off_data_transform.json', 'w') as fp:
+            json.dump(data_clean, fp)
+
+if __name__ == "__main__":
+    transform = Transform()
