@@ -2,11 +2,13 @@ import json
 
 from itertools import chain
 from database import Database
+from tables import Tables
 
 class Loader:
 
     def __init__(self):
         """ """
+        self.tables = Tables()
         self.database = Database()
         self.mycursor = self.database.connection()
         self.open_json()
@@ -78,6 +80,7 @@ class Loader:
         product_target = value
 
         result = self.check_product(id_target, table_target, column_target, product_target)
+
         return result
 
     def tab_marque(self, value):
@@ -109,17 +112,6 @@ class Loader:
 
         result = self.check_product(id_target, table_target, column_target, product_target)
         return result
-
-    # def tab_prodcat(self, value):
-    #     """ """
-    #     id_target = 'prod_id'
-    #     table_target = 'prodcat'
-    #     column_target = 'prod_id'
-    #     product_target = value
-
-    #     result = self.check_product(id_target, table_target, column_target, product_target)
-    #     return result
-
 
     def check_product(self, id_target, table_target, column_target, product_target):
         """ I Check if a value is in a table, if yes I return its id """
