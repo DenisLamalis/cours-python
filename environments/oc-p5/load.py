@@ -1,48 +1,18 @@
 import json
-import mysql.connector
-
-from data import *
-from mysql.connector import errorcode
-from db_settings import Database
 
 from itertools import chain
-
+from database import Database
 
 class Loader:
 
     def __init__(self):
-        self.db_settings = Database()
-        self.db_connect()
+        """ """
+        self.database = Database()
+        self.mycursor = self.database.connection()
         self.open_json()
-
-    def db_connect(self):
-
-        try:
-            self.db_settings = Database()
-            database_name = self.db_settings.DB_NAME
-
-            self.connection = mysql.connector.connect(
-                host = HOST,
-                user = USER,
-                password = PASSWORD,
-                database = database_name)
-
-            self.mycursor = self.connection.cursor()
-
-            if (self.connection.is_connected()):
-                print(f"Connection à la base {database_name} : OK")
-
-        except mysql.connector.Error as error:
-            print("Failed to insert into MySQL table {}".format(error))
-
-    def db_disconnect(self):
-            if (connection.is_connected()):
-                mycursor.close()
-                connection.close()
-                print("MySQL connection is closed")
         
     def open_json(self):
-        with open('transform_products.json', encoding='utf-8') as json_file:
+        with open('off_data_transform.json', encoding='utf-8') as json_file:
             self.my_products = json.load(json_file)
 
     def load_data(self):
@@ -210,14 +180,3 @@ if __name__ == "__main__":
 print(loader.load_data())
 
 
-# try:
-#     add_nutriscore = ("INSERT INTO nutriscore (nut_id, nut_type) VALUES (NULL,%s)")
-#     val = ('A')
-
-#     mycursor.execute(add_nutriscore, (val, ))
-#     cnx.commit()
-
-# except mysql.connector.Error as error:
-#     print("Failed to insert into MySQL table {}".format(error))
-
-# print(mycursor.rowcount, "record inserted.")
