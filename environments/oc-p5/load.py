@@ -2,14 +2,14 @@ import json
 
 from itertools import chain
 from database import Database
-from tables import Tables, Categories
+from tables import Tables, TabCategories
 
 class Loader:
 
     def __init__(self):
         """ """
         self.tables = Tables()
-        self.cat = Categories()
+        self.cat = TabCategories()
         self.database = Database()
         self.mycursor = self.database.connection()
         self.open_json()
