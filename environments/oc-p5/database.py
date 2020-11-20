@@ -63,5 +63,3 @@ class Database:
 
 if __name__ == "__main__":
     database = Database()
-
-database.tables_create()
