@@ -61,5 +61,28 @@ class Database:
             except mysql.connector.Error as err:
                 print("ECHEC : impossible de créer la table, erreur : {}".format(error))
 
+    def load_nutriscore(self):
+        mycursor = self.connection()
+
+        try:
+            add_nutriscore = ("INSERT INTO nutriscore (nut_id, nut_type) VALUES (%s,%s)")
+            values = (1, 'A')
+            self.mycursor.execute(add_nutriscore, values)
+            values = (2, 'B')
+            self.mycursor.execute(add_nutriscore, values)      
+            values = (3, 'C')
+            self.mycursor.execute(add_nutriscore, values) 
+            values = (4, 'D')
+            self.mycursor.execute(add_nutriscore, values) 
+            values = (5, 'E')
+            self.mycursor.execute(add_nutriscore, values) 
+            
+            self.connection.commit()
+
+            print("Les différents Nutriscore ont été chargés dans la base.")
+
+        except mysql.connector.Error as error:
+            print("Erreur lors du chargement : {}".format(error))
+
 if __name__ == "__main__":
     database = Database()
