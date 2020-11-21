@@ -2,13 +2,14 @@ import json
 
 from itertools import chain
 from database import Database
-from tab_modeles import ModCategories
+from tab_modeles import ModCategories, ModMarques
 
 class Loader:
 
     def __init__(self):
         """ """
         self.cat = ModCategories()
+        self.marq = ModMarques()
         self.database = Database()
         self.mycursor = self.database.connection()
         self.open_json()
