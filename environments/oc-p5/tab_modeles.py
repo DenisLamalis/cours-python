@@ -5,21 +5,19 @@ class ModCategories:
         self.table_target = 'categories'
         self.column_target = 'cat_nom'
 
-class ModMarque:
+class ModMarques:
     """ """
     def __init__(self):
         id_target = 'marq_id'
         table_target = 'marques'
         column_target = 'marq_nom'
-        product_target = value
 
-class ModShop:
+class ModShops:
     """ """
     def __init__(self):
         id_target = 'shop_id'
         table_target = 'shops'
         column_target = 'shop_nom'
-        product_target = value
 
 class ModProduits:
     """ """
@@ -27,5 +25,3 @@ class ModProduits:
         id_target = 'prod_id'
         table_target = 'produits'
         column_target = 'prod_id'
-        product_target = value
-
