@@ -8,20 +8,20 @@ class ModCategories:
 class ModMarques:
     """ """
     def __init__(self):
-        id_target = 'marq_id'
-        table_target = 'marques'
-        column_target = 'marq_nom'
+        self.id_target = 'marq_id'
+        self.table_target = 'marques'
+        self.column_target = 'marq_nom'
 
 class ModShops:
     """ """
     def __init__(self):
-        id_target = 'shop_id'
-        table_target = 'shops'
-        column_target = 'shop_nom'
+        self.id_target = 'shop_id'
+        self.table_target = 'shops'
+        self.column_target = 'shop_nom'
 
 class ModProduits:
     """ """
     def __init__(self):
-        id_target = 'prod_id'
-        table_target = 'produits'
-        column_target = 'prod_id'
+        self.id_target = 'prod_id'
+        self.table_target = 'produits'
+        self.column_target = 'prod_id'
