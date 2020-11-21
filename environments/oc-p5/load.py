@@ -50,11 +50,11 @@ class Loader:
 
             # Marques
             for n in range(len(prod_to_load['brands'])):
-                if self.tab_marque(prod_to_load['brands'][n]) == False:                
+                if self.read_marque(prod_to_load['brands'][n]) == False:                
                     add_marque = (f"INSERT INTO marques SET marq_nom='{prod_to_load['brands'][n]}'")
                     self.insert(add_marque)
 
-                marq_id = self.tab_marque(prod_to_load['brands'][n])
+                marq_id = self.read_marque(prod_to_load['brands'][n])
                 check = self.search_id(f"SELECT * FROM prodmarq WHERE marq_id='{marq_id}' AND prod_id='{prod_key}' ")
                 if not(check):     
                     add_prodmarq = (f"INSERT INTO prodmarq SET marq_id='{marq_id}', prod_id='{prod_key}' ")
@@ -78,14 +78,9 @@ class Loader:
         result = self.check_product(self.cat.id_target, self.cat.table_target, self.cat.column_target, value)
         return result
 
-    def tab_marque(self, value):
+    def read_marque(self, value):
         """ """
-        id_target = 'marq_id'
-        table_target = 'marques'
-        column_target = 'marq_nom'
-        product_target = value
-
-        result = self.check_product(id_target, table_target, column_target, product_target)
+        result = self.check_product(self.marq.id_target, self.marq.table_target, self.marq.column_target, value)
         return result
 
     def tab_shop(self, value):
