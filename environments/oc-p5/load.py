@@ -37,11 +37,11 @@ class Loader:
 
             # Categories
             for n in range(len(prod_to_load['categories'])):
-                if self.tab_categorie(prod_to_load['categories'][n]) == False:                
+                if self.read_categorie(prod_to_load['categories'][n]) == False:                
                     add_categorie = (f"INSERT INTO categories SET cat_nom='{prod_to_load['categories'][n]}'")
                     self.insert(add_categorie)
 
-                cat_id = self.tab_categorie(prod_to_load['categories'][n])
+                cat_id = self.read_categorie(prod_to_load['categories'][n])
                 check = self.search_id(f"SELECT * FROM prodcat WHERE cat_id='{cat_id}' AND prod_id='{prod_key}' ")
                 if not(check):     
                     add_prodcat = (f"INSERT INTO prodcat SET cat_id='{cat_id}', prod_id='{prod_key}' ")
@@ -72,11 +72,9 @@ class Loader:
                     self.insert(add_prodshop)
 
 
-    def tab_categorie(self, value):
+    def read_categorie(self, value):
         """ """
-
         result = self.check_product(self.cat.id_target, self.cat.table_target, self.cat.column_target, value)
-
         return result
 
     def tab_marque(self, value):
