@@ -92,15 +92,6 @@ class Tables:
             "     REFERENCES `produits` (`prod_id`)"
             ") ENGINE=InnoDB")
 
-class TabCategories:
-    """ """
-
-    def __init__(self):
-        self.id_target = 'cat_id'
-        self.table_target = 'categories'
-        self.column_target = 'cat_nom'
-
-
 
 if __name__ == "__main__":
     tables = Tables()
