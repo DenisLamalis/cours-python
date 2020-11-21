@@ -36,7 +36,7 @@ class Loader:
             else:
                 print(f"Le produit : {prod_to_load['product_name_fr']}, avec le code : {prod_key}, existe déjà")
 
-            # Categories
+            # Insert Categories in Tables : categories & prodcat
             for n in range(len(prod_to_load['categories'])):
                 if self.read_categorie(prod_to_load['categories'][n]) == False:                
                     add_categorie = (f"INSERT INTO categories SET cat_nom='{prod_to_load['categories'][n]}'")
@@ -48,7 +48,7 @@ class Loader:
                     add_prodcat = (f"INSERT INTO prodcat SET cat_id='{cat_id}', prod_id='{prod_key}' ")
                     self.insert(add_prodcat)
 
-            # Marques
+            # Insert Marques in Tables : marques & prodmarq
             for n in range(len(prod_to_load['brands'])):
                 if self.read_marque(prod_to_load['brands'][n]) == False:                
                     add_marque = (f"INSERT INTO marques SET marq_nom='{prod_to_load['brands'][n]}'")
