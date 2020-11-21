@@ -2,14 +2,13 @@ import json
 
 from itertools import chain
 from database import Database
-from tables import Tables, TabCategories
+from tab_modeles import ModCategories
 
 class Loader:
 
     def __init__(self):
         """ """
-        self.tables = Tables()
-        self.cat = TabCategories()
+        self.cat = ModCategories()
         self.database = Database()
         self.mycursor = self.database.connection()
         self.open_json()
@@ -75,10 +74,6 @@ class Loader:
 
     def tab_categorie(self, value):
         """ """
-        # id_target = 'cat_id'
-        # table_target = 'categories'
-        # column_target = 'cat_nom'
-        # product_target = value
 
         result = self.check_product(self.cat.id_target, self.cat.table_target, self.cat.column_target, value)
 
@@ -137,31 +132,6 @@ class Loader:
         self.mycursor.execute(query)
         rows = self.mycursor.fetchall()
         return rows
-
-
-
-
-    def load_nutriscore(self):
-
-        try:
-            add_nutriscore = ("INSERT INTO nutriscore (nut_id, nut_type) VALUES (%s,%s)")
-            values = (1, 'A')
-            self.mycursor.execute(add_nutriscore, values)
-            values = (2, 'B')
-            self.mycursor.execute(add_nutriscore, values)      
-            values = (3, 'C')
-            self.mycursor.execute(add_nutriscore, values) 
-            values = (4, 'D')
-            self.mycursor.execute(add_nutriscore, values) 
-            values = (5, 'E')
-            self.mycursor.execute(add_nutriscore, values) 
-            
-            self.connection.commit()
-
-            print("Les différents Nutriscore ont été chargés dans la base.")
-
-        except mysql.connector.Error as error:
-            print("Erreur lors du chargement : {}".format(error))
 
 
 # ============================================================
