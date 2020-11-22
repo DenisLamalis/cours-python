@@ -2,7 +2,7 @@ import json
 
 from itertools import chain
 from database import Database
-from tab_modeles import ModCategories, ModMarques
+from tab_modeles import ModCategories, ModMarques, ModShops
 
 class Loader:
 
@@ -10,6 +10,7 @@ class Loader:
         """ """
         self.cat = ModCategories()
         self.marq = ModMarques()
+        self.shop = ModShops()
         self.database = Database()
         self.mycursor = self.database.connection()
         self.open_json()
@@ -60,13 +61,13 @@ class Loader:
                     add_prodmarq = (f"INSERT INTO prodmarq SET marq_id='{marq_id}', prod_id='{prod_key}' ")
                     self.insert(add_prodmarq)
 
-            # Shops
+            # Insert Shops in Tables : shops & prodshop
             for n in range(len(prod_to_load['stores'])):
-                if self.tab_shop(prod_to_load['stores'][n]) == False:                
+                if self.read_shop(prod_to_load['stores'][n]) == False:                
                     add_shop = (f"INSERT INTO shops SET shop_nom='{prod_to_load['stores'][n]}'")
                     self.insert(add_shop)
 
-                shop_id = self.tab_shop(prod_to_load['stores'][n])
+                shop_id = self.read_shop(prod_to_load['stores'][n])
                 check = self.search_id(f"SELECT * FROM prodshop WHERE shop_id='{shop_id}' AND prod_id='{prod_key}' ")
                 if not(check):     
                     add_prodshop = (f"INSERT INTO prodshop SET shop_id='{shop_id}', prod_id='{prod_key}' ")
@@ -83,14 +84,9 @@ class Loader:
         result = self.check_product(self.marq.id_target, self.marq.table_target, self.marq.column_target, value)
         return result
 
-    def tab_shop(self, value):
+    def read_shop(self, value):
         """ """
-        id_target = 'shop_id'
-        table_target = 'shops'
-        column_target = 'shop_nom'
-        product_target = value
-
-        result = self.check_product(id_target, table_target, column_target, product_target)
+        result = self.check_product(self.shop.id_target, self.shop.table_target, self.shop.column_target, value)
         return result
 
     def tab_produits(self, value):
