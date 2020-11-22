@@ -2,12 +2,13 @@ import json
 
 from itertools import chain
 from database import Database
-from tab_modeles import ModCategories, ModMarques, ModShops
+from tab_modeles import ModProduits, ModCategories, ModMarques, ModShops
 
 class Loader:
 
     def __init__(self):
         """ """
+        self.prod = ModProduits()
         self.cat = ModCategories()
         self.marq = ModMarques()
         self.shop = ModShops()
@@ -29,7 +30,7 @@ class Loader:
             # print(prod_to_load)
 
             # Produits
-            if self.tab_produits(prod_key) == False:
+            if self.read_produits(prod_key) == False:
                 nut_id = self.check_product('nut_id', 'nutriscore', 'nut_type', prod_to_load['nutriscore_grade'][0])          
                 add_product = (f"INSERT INTO produits SET prod_id='{prod_key}', prod_nom='{prod_to_load['product_name_fr']}', prod_url='{prod_to_load['url']}', nut_id='{nut_id}'")
             
@@ -89,14 +90,9 @@ class Loader:
         result = self.check_product(self.shop.id_target, self.shop.table_target, self.shop.column_target, value)
         return result
 
-    def tab_produits(self, value):
+    def read_produits(self, value):
         """ """
-        id_target = 'prod_id'
-        table_target = 'produits'
-        column_target = 'prod_id'
-        product_target = value
-
-        result = self.check_product(id_target, table_target, column_target, product_target)
+        result = self.check_product(self.prod.id_target, self.prod.table_target, self.prod.column_target, value)
         return result
 
     def check_product(self, id_target, table_target, column_target, product_target):
