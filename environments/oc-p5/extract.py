@@ -34,3 +34,5 @@ class Extract:
 
 if __name__ == "__main__":
     extract = Extract()
+
+    extract.extract()
